@@ -10,20 +10,35 @@ document.querySelectorAll('.video-card').forEach(card=>card.addEventListener('cl
 document.querySelectorAll('.graphic-card').forEach(card=>card.addEventListener('click',()=>openModal(`<img src="${card.dataset.image}" alt="Graphic design sample">`)));
 modal.querySelector('.modal-close').addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 
-// VYRA guiding verse — directly below “Rise with purpose. Win together.”
-const heroTitle=document.querySelector('.hero-copy h1');
-if(heroTitle){
-  const verse=document.createElement('div');
-  verse.className='hero-verse';
-  verse.innerHTML=`<p>“Whatever you do, work at it with all your heart, as working for the Lord, not for human masters.”</p><span>— Colossians 3:23</span>`;
-  heroTitle.insertAdjacentElement('afterend',verse);
+// Smooth scroll-reveal transitions for VYRA sections and cards.
+const motionTargets=document.querySelectorAll(`
+  main > .section:not(.hero),
+  .team-card,
+  .service-group,
+  .service-card,
+  .video-card,
+  .graphic-card,
+  .logo-wall > div,
+  .meaning-card
+`);
 
-  const style=document.createElement('style');
-  style.textContent=`
-    .hero-verse{max-width:650px;margin:-4px 0 24px;padding:17px 20px;border-left:3px solid #c7a25d;background:rgba(255,255,255,.65);border-radius:0 14px 14px 0}
-    .hero-verse p{margin:0 0 7px;font-family:'Playfair Display',serif;font-size:17px;line-height:1.55;color:#07175d;font-style:italic}
-    .hero-verse span{font-size:11px;font-weight:800;letter-spacing:.1em;color:#68708a;text-transform:uppercase}
-    @media(max-width:620px){.hero-verse{margin-top:-6px;padding:14px 16px}.hero-verse p{font-size:15px}}
-  `;
-  document.head.appendChild(style);
+motionTargets.forEach((el,index)=>{
+  el.classList.add('scroll-reveal');
+  if(el.matches('.team-card,.service-card,.video-card,.graphic-card,.logo-wall > div')){
+    el.style.setProperty('--reveal-delay',`${(index%4)*70}ms`);
+  }
+});
+
+if('IntersectionObserver' in window){
+  const revealObserver=new IntersectionObserver((entries,observer)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  },{threshold:.12,rootMargin:'0px 0px -55px 0px'});
+  motionTargets.forEach(el=>revealObserver.observe(el));
+}else{
+  motionTargets.forEach(el=>el.classList.add('is-visible'));
 }
