@@ -13,14 +13,14 @@ modal.querySelector('.modal-close').addEventListener('click',closeModal);modal.a
 // VYRA Tools & Technology section
 const toolGroups=[
   {title:'Creative & Content',tools:[
-    ['Canva','https://cdn.simpleicons.org/canva'],
-    ['CapCut','https://cdn.simpleicons.org/capcut'],
-    ['Adobe Premiere Pro','https://cdn.simpleicons.org/adobepremierepro'],
+    ['Canva','https://www.google.com/s2/favicons?domain=canva.com&sz=128'],
+    ['CapCut','https://www.google.com/s2/favicons?domain=capcut.com&sz=128'],
+    ['Adobe Premiere Pro','https://www.google.com/s2/favicons?domain=adobe.com&sz=128'],
     ['Meta Business Suite','https://cdn.simpleicons.org/meta']
   ]},
   {title:'Project & Communication',tools:[
     ['Trello','https://cdn.simpleicons.org/trello'],
-    ['Slack','https://cdn.simpleicons.org/slack'],
+    ['Slack','https://www.google.com/s2/favicons?domain=slack.com&sz=128'],
     ['GitHub','https://cdn.simpleicons.org/github'],
     ['Netlify','https://cdn.simpleicons.org/netlify']
   ]},
@@ -36,7 +36,7 @@ const toolGroups=[
     ['Google Chat','https://www.gstatic.com/images/branding/product/2x/chat_2020q4_48dp.png']
   ]},
   {title:'AI & Technology',tools:[
-    ['ChatGPT Pro','https://cdn.simpleicons.org/openai'],
+    ['ChatGPT Pro','https://www.google.com/s2/favicons?domain=chatgpt.com&sz=128'],
     ['Gemini Pro','https://cdn.simpleicons.org/googlegemini'],
     ['Higgsfield AI','https://www.google.com/s2/favicons?domain=higgsfield.ai&sz=128'],
     ['ElevenLabs','https://cdn.simpleicons.org/elevenlabs']
