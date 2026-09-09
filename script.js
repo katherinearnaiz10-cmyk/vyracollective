@@ -25,15 +25,15 @@ const toolGroups=[
     ['Netlify','https://cdn.simpleicons.org/netlify']
   ]},
   {title:'Google Workspace',tools:[
-    ['Gmail','https://cdn.simpleicons.org/gmail'],
-    ['Google Drive','https://cdn.simpleicons.org/googledrive'],
-    ['Google Docs','https://cdn.simpleicons.org/googledocs'],
-    ['Google Sheets','https://cdn.simpleicons.org/googlesheets'],
-    ['Google Slides','https://cdn.simpleicons.org/googleslides'],
-    ['Google Forms','https://cdn.simpleicons.org/googleforms'],
-    ['Google Calendar','https://cdn.simpleicons.org/googlecalendar'],
-    ['Google Meet','https://cdn.simpleicons.org/googlemeet'],
-    ['Google Chat','https://cdn.simpleicons.org/googlechat']
+    ['Gmail','https://www.gstatic.com/images/branding/product/2x/gmail_2020q4_48dp.png'],
+    ['Google Drive','https://www.gstatic.com/images/branding/product/2x/drive_2020q4_48dp.png'],
+    ['Google Docs','https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_1_document_x64.png'],
+    ['Google Sheets','https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_1_spreadsheet_x64.png'],
+    ['Google Slides','https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_1_presentation_x64.png'],
+    ['Google Forms','https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_2_form_x64.png'],
+    ['Google Calendar','https://www.gstatic.com/images/branding/product/2x/calendar_2020q4_48dp.png'],
+    ['Google Meet','https://www.gstatic.com/images/branding/product/2x/meet_2020q4_48dp.png'],
+    ['Google Chat','https://www.gstatic.com/images/branding/product/2x/chat_2020q4_48dp.png']
   ]},
   {title:'AI & Technology',tools:[
     ['ChatGPT Pro','https://cdn.simpleicons.org/openai'],
