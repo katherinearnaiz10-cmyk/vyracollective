@@ -96,3 +96,8 @@ if('IntersectionObserver' in window){
 }else{
   motionTargets.forEach(el=>el.classList.add('is-visible'));
 }
+
+// Load the VYRA voice-led story experience.
+const storyLoader=document.createElement('script');
+storyLoader.src='story-loader.js';
+document.body.appendChild(storyLoader);
