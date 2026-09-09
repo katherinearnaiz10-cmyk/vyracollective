@@ -12,40 +12,87 @@ modal.querySelector('.modal-close').addEventListener('click',closeModal);modal.a
 
 // VYRA Tools & Technology section
 const toolGroups=[
-  {title:'Creative & Content',tools:[['Canva','https://www.google.com/s2/favicons?domain=canva.com&sz=128'],['CapCut','https://www.google.com/s2/favicons?domain=capcut.com&sz=128'],['Adobe Premiere Pro','https://www.google.com/s2/favicons?domain=adobe.com&sz=128'],['Meta Business Suite','https://cdn.simpleicons.org/meta']]},
-  {title:'Project & Communication',tools:[['Trello','https://cdn.simpleicons.org/trello'],['Slack','https://www.google.com/s2/favicons?domain=slack.com&sz=128'],['GitHub','https://cdn.simpleicons.org/github'],['Netlify','https://cdn.simpleicons.org/netlify']]},
-  {title:'Google Workspace',tools:[['Gmail','https://www.gstatic.com/images/branding/product/2x/gmail_2020q4_48dp.png'],['Google Drive','https://www.gstatic.com/images/branding/product/2x/drive_2020q4_48dp.png'],['Google Docs','https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_1_document_x64.png'],['Google Sheets','https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_1_spreadsheet_x64.png'],['Google Slides','https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_1_presentation_x64.png'],['Google Forms','https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_2_form_x64.png'],['Google Calendar','https://www.gstatic.com/images/branding/product/2x/calendar_2020q4_48dp.png'],['Google Meet','https://www.gstatic.com/images/branding/product/2x/meet_2020q4_48dp.png'],['Google Chat','https://www.gstatic.com/images/branding/product/2x/chat_2020q4_48dp.png']]},
-  {title:'AI & Technology',tools:[['ChatGPT Pro','https://www.google.com/s2/favicons?domain=chatgpt.com&sz=128'],['Gemini Pro','https://cdn.simpleicons.org/googlegemini'],['Higgsfield AI','https://www.google.com/s2/favicons?domain=higgsfield.ai&sz=128'],['ElevenLabs','https://cdn.simpleicons.org/elevenlabs']]}
+  {title:'Creative & Content',tools:[
+    ['Canva','https://www.google.com/s2/favicons?domain=canva.com&sz=128'],
+    ['CapCut','https://www.google.com/s2/favicons?domain=capcut.com&sz=128'],
+    ['Adobe Premiere Pro','https://www.google.com/s2/favicons?domain=adobe.com&sz=128'],
+    ['Meta Business Suite','https://cdn.simpleicons.org/meta']
+  ]},
+  {title:'Project & Communication',tools:[
+    ['Trello','https://cdn.simpleicons.org/trello'],
+    ['Slack','https://www.google.com/s2/favicons?domain=slack.com&sz=128'],
+    ['GitHub','https://cdn.simpleicons.org/github'],
+    ['Netlify','https://cdn.simpleicons.org/netlify']
+  ]},
+  {title:'Google Workspace',tools:[
+    ['Gmail','https://www.gstatic.com/images/branding/product/2x/gmail_2020q4_48dp.png'],
+    ['Google Drive','https://www.gstatic.com/images/branding/product/2x/drive_2020q4_48dp.png'],
+    ['Google Docs','https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_1_document_x64.png'],
+    ['Google Sheets','https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_1_spreadsheet_x64.png'],
+    ['Google Slides','https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_1_presentation_x64.png'],
+    ['Google Forms','https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_2_form_x64.png'],
+    ['Google Calendar','https://www.gstatic.com/images/branding/product/2x/calendar_2020q4_48dp.png'],
+    ['Google Meet','https://www.gstatic.com/images/branding/product/2x/meet_2020q4_48dp.png'],
+    ['Google Chat','https://www.gstatic.com/images/branding/product/2x/chat_2020q4_48dp.png']
+  ]},
+  {title:'AI & Technology',tools:[
+    ['ChatGPT Pro','https://www.google.com/s2/favicons?domain=chatgpt.com&sz=128'],
+    ['Gemini Pro','https://cdn.simpleicons.org/googlegemini'],
+    ['Higgsfield AI','https://www.google.com/s2/favicons?domain=higgsfield.ai&sz=128'],
+    ['ElevenLabs','https://cdn.simpleicons.org/elevenlabs']
+  ]}
 ];
-const toolsSection=document.createElement('section');toolsSection.id='tools';toolsSection.className='section tools-section';toolsSection.innerHTML=`<div class="section-head tools-head"><div><span class="section-kicker">TOOLS & TECHNOLOGY</span><h2>Powered by the tools we trust.</h2></div><p>The platforms we use to create, collaborate, communicate and deliver quality work for our clients.</p></div><div class="tool-groups">${toolGroups.map(group=>`<div class="tool-group"><div class="tool-group-title">${group.title}</div><div class="tools-grid">${group.tools.map(([name,logo])=>`<div class="tool-card"><div class="tool-logo-wrap"><img src="${logo}" alt="${name} logo" loading="lazy"></div><span>${name}</span></div>`).join('')}</div></div>`).join('')}</div>`;
-const brandsSection=document.querySelector('.brands-section');if(brandsSection)brandsSection.before(toolsSection);
-const toolsStyle=document.createElement('style');toolsStyle.textContent=`.tools-section{background:transparent}.tools-head{margin-bottom:38px}.tool-groups{display:grid;gap:34px}.tool-group-title{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#7b8296;margin:0 0 14px}.tools-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}.tool-card{min-height:138px;padding:20px 12px;border-radius:20px;background:rgba(255,255,255,.68);border:1px solid rgba(255,255,255,.9);box-shadow:0 12px 36px rgba(7,23,93,.07);backdrop-filter:blur(16px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;text-align:center;transition:.25s}.tool-card:hover{transform:translateY(-7px)}.tool-logo-wrap{width:58px;height:58px;border-radius:16px;background:#fff;display:grid;place-items:center;padding:9px}.tool-logo-wrap img{width:40px;height:40px;object-fit:contain}.tool-card span{font-size:12px;font-weight:800;color:#172044}@media(max-width:1050px){.tools-grid{grid-template-columns:repeat(4,1fr)}}@media(max-width:700px){.tools-grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:430px){.tools-grid{grid-template-columns:repeat(2,1fr)}}`;document.head.appendChild(toolsStyle);
 
-// Clean text-only presentation inspired by the explainer format.
-const story=document.createElement('section');story.id='story';story.className='vyra-story';
-story.innerHTML=`<div class="story-shell"><div class="story-top"><span>VYRA COLLECTIVE</span><span class="story-counter">01 / 08</span></div><div class="story-stage" aria-live="polite"><div class="story-slide active"><span class="story-label">MEET VYRA</span><h2>YOUR VISION.<br><b>OUR CRAFT.</b></h2><p>Creative and business support, built around the people behind your vision.</p></div></div><div class="story-controls"><button class="story-play" type="button"><span class="play-icon">▶</span><span class="play-label">PLAY OUR STORY</span></button><div class="story-progress"><i></i></div><button class="story-sound" type="button">VOICE ON</button></div></div>`;
-const hero=document.querySelector('.hero');if(hero)hero.after(story);
-const storyStyle=document.createElement('style');storyStyle.textContent=`.vyra-story{background:#07175d;color:#fff;padding:58px 6vw 70px;font-family:Manrope,Arial,sans-serif}.story-shell{max-width:1280px;margin:auto;min-height:650px;border:1px solid rgba(255,255,255,.16);display:flex;flex-direction:column;padding:30px 36px 28px;background:#07175d}.story-top{display:flex;justify-content:space-between;align-items:center;font-size:10px;font-weight:800;letter-spacing:.2em;color:rgba(255,255,255,.55)}.story-stage{flex:1;display:flex;align-items:center;justify-content:center;padding:60px 7%;text-align:left}.story-slide{width:100%;max-width:1000px;opacity:0;transform:translateY(18px);transition:opacity .45s ease,transform .45s ease}.story-slide.active{opacity:1;transform:none}.story-label{display:block;font-size:11px;font-weight:800;letter-spacing:.2em;color:#c7a25d;margin-bottom:25px}.story-slide h2{font-family:"Playfair Display",serif;font-size:clamp(54px,8vw,112px);line-height:.92;letter-spacing:-.045em;margin:0;max-width:980px;color:#fff}.story-slide h2 b{font-weight:600;color:rgba(255,255,255,.52)}.story-slide p{font-size:clamp(15px,1.5vw,20px);line-height:1.65;color:rgba(255,255,255,.66);max-width:650px;margin:30px 0 0}.story-controls{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:22px}.story-play,.story-sound{border:0;background:none;color:#fff;font:800 10px/1 Manrope,Arial,sans-serif;letter-spacing:.12em;cursor:pointer;padding:8px 0}.story-play{display:flex;align-items:center;gap:10px}.play-icon{width:34px;height:34px;border:1px solid rgba(255,255,255,.5);border-radius:50%;display:grid;place-items:center;font-size:10px;padding-left:2px}.story-progress{height:2px;background:rgba(255,255,255,.16);overflow:hidden}.story-progress i{display:block;height:100%;width:0;background:#fff}.story-sound{color:rgba(255,255,255,.55)}@media(max-width:650px){.vyra-story{padding:32px 4vw}.story-shell{min-height:560px;padding:22px 18px}.story-stage{padding:45px 2%}.story-slide h2{font-size:clamp(45px,14vw,70px)}.story-controls{grid-template-columns:auto 1fr}.story-sound{display:none}.story-top{font-size:9px}}@media(prefers-reduced-motion:reduce){.story-slide{transition:none}}`;document.head.appendChild(storyStyle);
-const stage=story.querySelector('.story-stage'),playBtn=story.querySelector('.story-play'),bar=story.querySelector('.story-progress i'),counter=story.querySelector('.story-counter');
-const scenes=[
- {label:'MEET VYRA',title:'YOUR VISION.<br><b>OUR CRAFT.</b>',body:'Creative and business support, built around the people behind your vision.',say:'Every growing business begins with a vision. Bringing that vision to life takes the right people, working together.'},
- {label:'WHO WE ARE',title:'VYRA<br><b>COLLECTIVE.</b>',body:'A creative and virtual support team helping businesses create, connect, and move forward.',say:'Welcome to VYRA Collective, a creative and virtual support team built to help businesses create, connect, and move forward.'},
- {label:'WHAT WE DO',title:'CREATE.<br><b>SUPPORT.</b>',body:'Video Editing · Social Media Management · Graphic Design · Customer Admin Support',say:'From compelling video edits and social media management, to graphic design and reliable customer administrative support, we bring different skills together under one team.'},
- {label:'HOW WE WORK',title:'DIFFERENT<br>STRENGTHS.<br><b>ONE VISION.</b>',body:'The right people. The right skills. One coordinated client experience.',say:'Great work happens when the right people bring their strengths together. Each role contributes to one coordinated client experience.'},
- {label:'OUR PROCESS',title:'UNDERSTAND.<br>CREATE.<br><b>REFINE.</b>',body:'We learn your vision, understand your brand, communicate clearly, and improve the work together.',say:'We learn your vision, understand your brand, and work alongside you to turn ideas into meaningful results. We create with clear communication and refine the work as the partnership grows.'},
- {label:'OUR FOUNDATION',title:'GOD AT THE CENTER.<br><b>PEOPLE AT THE HEART.</b>',body:'Excellence in the work. Victory together.',say:'At the heart of VYRA is a simple belief: God at the center. People at the heart. Excellence in the work. Victory together.'},
- {label:'WHAT VYRA MEANS',title:'VICTORIOUS.<br>YET RISING.<br><b>ALWAYS.</b>',body:'Progress. Resilience. Purposeful growth.',say:'VYRA stands for Victorious. Yet Rising. Always. A mindset of progress, resilience, and purposeful growth.'},
- {label:'LET’S BUILD TOGETHER',title:'YOUR VISION.<br><b>THE RIGHT TEAM BEHIND IT.</b>',body:'Welcome to VYRA Collective.',say:'Your vision deserves the right team behind it. Welcome to VYRA Collective.'}
-];
-let timers=[],currentUtterance=null;
-function renderScene(i){const s=scenes[i];counter.textContent=String(i+1).padStart(2,'0')+' / '+String(scenes.length).padStart(2,'0');const old=stage.querySelector('.story-slide');if(old)old.classList.remove('active');setTimeout(()=>{stage.innerHTML=`<div class="story-slide"><span class="story-label">${s.label}</span><h2>${s.title}</h2><p>${s.body}</p></div>`;requestAnimationFrame(()=>stage.firstElementChild.classList.add('active'))},230)}
-function pickVoice(){const vs=speechSynthesis.getVoices();return vs.find(v=>/samantha|ava|victoria|karen|moira|zira|susan|female/i.test(v.name)&&/^en/i.test(v.lang))||vs.find(v=>/^en/i.test(v.lang))||null}
-function stopStory(){timers.forEach(clearTimeout);timers=[];if('speechSynthesis'in window)speechSynthesis.cancel();bar.style.transition='none';bar.style.width='0'}
-function speakScenes(){if(!('speechSynthesis'in window))return;let i=0;const next=()=>{if(i>=scenes.length)return;renderScene(i);const u=new SpeechSynthesisUtterance(scenes[i].say);u.lang='en-US';u.rate=.9;u.pitch=1;const v=pickVoice();if(v)u.voice=v;u.onend=()=>{i++;setTimeout(next,450)};currentUtterance=u;speechSynthesis.speak(u)};next()}
-function playStory(){stopStory();playBtn.querySelector('.play-label').textContent='REPLAY STORY';bar.style.transition='width 78s linear';requestAnimationFrame(()=>bar.style.width='100%');speakScenes()}
-playBtn.addEventListener('click',playStory);
+const toolsSection=document.createElement('section');
+toolsSection.id='tools';
+toolsSection.className='section tools-section';
+toolsSection.innerHTML=`
+  <div class="section-head tools-head">
+    <div><span class="section-kicker">TOOLS & TECHNOLOGY</span><h2>Powered by the tools we trust.</h2></div>
+    <p>The platforms we use to create, collaborate, communicate and deliver quality work for our clients.</p>
+  </div>
+  <div class="tool-groups">
+    ${toolGroups.map(group=>`<div class="tool-group"><div class="tool-group-title">${group.title}</div><div class="tools-grid">${group.tools.map(([name,logo])=>`<div class="tool-card"><div class="tool-logo-wrap"><img src="${logo}" alt="${name} logo" loading="lazy"></div><span>${name}</span></div>`).join('')}</div></div>`).join('')}
+  </div>`;
+
+const brandsSection=document.querySelector('.brands-section');
+if(brandsSection) brandsSection.before(toolsSection);
+
+const toolsStyle=document.createElement('style');
+toolsStyle.textContent=`
+.tools-section{background:transparent}.tools-head{margin-bottom:38px}.tool-groups{display:grid;gap:34px}.tool-group-title{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#7b8296;margin:0 0 14px}.tools-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}.tool-card{min-height:138px;padding:20px 12px;border-radius:20px;background:rgba(255,255,255,.68);border:1px solid rgba(255,255,255,.9);box-shadow:0 12px 36px rgba(7,23,93,.07);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;text-align:center;transition:transform .25s ease,box-shadow .25s ease}.tool-card:hover{transform:translateY(-7px);box-shadow:0 20px 48px rgba(7,23,93,.13)}.tool-logo-wrap{width:58px;height:58px;border-radius:16px;background:#fff;display:grid;place-items:center;padding:9px;box-shadow:0 7px 20px rgba(7,23,93,.08)}.tool-logo-wrap img{width:40px;height:40px;object-fit:contain}.tool-card span{font-size:12px;font-weight:800;color:#172044;line-height:1.35}@media(max-width:1050px){.tools-grid{grid-template-columns:repeat(4,1fr)}}@media(max-width:700px){.tools-grid{grid-template-columns:repeat(3,1fr);gap:10px}.tool-card{min-height:120px;padding:15px 8px}.tool-logo-wrap{width:50px;height:50px}.tool-logo-wrap img{width:34px;height:34px}}@media(max-width:430px){.tools-grid{grid-template-columns:repeat(2,1fr)}}`;
+document.head.appendChild(toolsStyle);
 
 // Smooth scroll-reveal transitions for VYRA sections and cards.
-const motionTargets=document.querySelectorAll(`main > .section:not(.hero),.team-card,.service-group,.service-card,.video-card,.graphic-card,.logo-wall > div,.tool-card,.meaning-card`);
-motionTargets.forEach((el,index)=>{el.classList.add('scroll-reveal');if(el.matches('.team-card,.service-card,.video-card,.graphic-card,.logo-wall > div,.tool-card'))el.style.setProperty('--reveal-delay',`${(index%4)*70}ms`)});
-if('IntersectionObserver'in window){const revealObserver=new IntersectionObserver((entries,observer)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}})},{threshold:.12,rootMargin:'0px 0px -55px 0px'});motionTargets.forEach(el=>revealObserver.observe(el))}else{motionTargets.forEach(el=>el.classList.add('is-visible'))}
+const motionTargets=document.querySelectorAll(`
+  main > .section:not(.hero),
+  .team-card,
+  .service-group,
+  .service-card,
+  .video-card,
+  .graphic-card,
+  .logo-wall > div,
+  .tool-card,
+  .meaning-card
+`);
+
+motionTargets.forEach((el,index)=>{
+  el.classList.add('scroll-reveal');
+  if(el.matches('.team-card,.service-card,.video-card,.graphic-card,.logo-wall > div,.tool-card')){
+    el.style.setProperty('--reveal-delay',`${(index%4)*70}ms`);
+  }
+});
+
+if('IntersectionObserver' in window){
+  const revealObserver=new IntersectionObserver((entries,observer)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  },{threshold:.12,rootMargin:'0px 0px -55px 0px'});
+  motionTargets.forEach(el=>revealObserver.observe(el));
+}else{
+  motionTargets.forEach(el=>el.classList.add('is-visible'));
+}
