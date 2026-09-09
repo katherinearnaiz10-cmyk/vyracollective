@@ -13,16 +13,33 @@ modal.querySelector('.modal-close').addEventListener('click',closeModal);modal.a
 // VYRA Tools & Technology section
 const toolGroups=[
   {title:'Creative & Content',tools:[
-    ['Canva','canva.com'],['CapCut','capcut.com'],['Adobe Premiere Pro','adobe.com'],['Meta Business Suite','business.facebook.com']
+    ['Canva','https://cdn.simpleicons.org/canva'],
+    ['CapCut','https://cdn.simpleicons.org/capcut'],
+    ['Adobe Premiere Pro','https://cdn.simpleicons.org/adobepremierepro'],
+    ['Meta Business Suite','https://cdn.simpleicons.org/meta']
   ]},
   {title:'Project & Communication',tools:[
-    ['Trello','trello.com'],['Slack','slack.com'],['GitHub','github.com'],['Netlify','netlify.com']
+    ['Trello','https://cdn.simpleicons.org/trello'],
+    ['Slack','https://cdn.simpleicons.org/slack'],
+    ['GitHub','https://cdn.simpleicons.org/github'],
+    ['Netlify','https://cdn.simpleicons.org/netlify']
   ]},
   {title:'Google Workspace',tools:[
-    ['Gmail','mail.google.com'],['Google Drive','drive.google.com'],['Google Docs','docs.google.com'],['Google Sheets','sheets.google.com'],['Google Slides','slides.google.com'],['Google Forms','forms.google.com'],['Google Calendar','calendar.google.com'],['Google Meet','meet.google.com'],['Google Chat','chat.google.com']
+    ['Gmail','https://cdn.simpleicons.org/gmail'],
+    ['Google Drive','https://cdn.simpleicons.org/googledrive'],
+    ['Google Docs','https://cdn.simpleicons.org/googledocs'],
+    ['Google Sheets','https://cdn.simpleicons.org/googlesheets'],
+    ['Google Slides','https://cdn.simpleicons.org/googleslides'],
+    ['Google Forms','https://cdn.simpleicons.org/googleforms'],
+    ['Google Calendar','https://cdn.simpleicons.org/googlecalendar'],
+    ['Google Meet','https://cdn.simpleicons.org/googlemeet'],
+    ['Google Chat','https://cdn.simpleicons.org/googlechat']
   ]},
   {title:'AI & Technology',tools:[
-    ['ChatGPT Pro','chatgpt.com'],['Gemini Pro','gemini.google.com'],['Higgsfield AI','higgsfield.ai'],['ElevenLabs','elevenlabs.io']
+    ['ChatGPT Pro','https://cdn.simpleicons.org/openai'],
+    ['Gemini Pro','https://cdn.simpleicons.org/googlegemini'],
+    ['Higgsfield AI','https://www.google.com/s2/favicons?domain=higgsfield.ai&sz=128'],
+    ['ElevenLabs','https://cdn.simpleicons.org/elevenlabs']
   ]}
 ];
 
@@ -35,7 +52,7 @@ toolsSection.innerHTML=`
     <p>The platforms we use to create, collaborate, communicate and deliver quality work for our clients.</p>
   </div>
   <div class="tool-groups">
-    ${toolGroups.map(group=>`<div class="tool-group"><div class="tool-group-title">${group.title}</div><div class="tools-grid">${group.tools.map(([name,domain])=>`<div class="tool-card"><div class="tool-logo-wrap"><img src="https://www.google.com/s2/favicons?domain=${domain}&sz=128" alt="${name} logo" loading="lazy"></div><span>${name}</span></div>`).join('')}</div></div>`).join('')}
+    ${toolGroups.map(group=>`<div class="tool-group"><div class="tool-group-title">${group.title}</div><div class="tools-grid">${group.tools.map(([name,logo])=>`<div class="tool-card"><div class="tool-logo-wrap"><img src="${logo}" alt="${name} logo" loading="lazy"></div><span>${name}</span></div>`).join('')}</div></div>`).join('')}
   </div>`;
 
 const brandsSection=document.querySelector('.brands-section');
