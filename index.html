@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="glass.css" />
+  <link rel="stylesheet" href="whoosh.css" />
 </head>
 <body>
 <header class="site-header">
@@ -19,7 +20,9 @@
     <a href="#about">About</a><a href="#services">Services</a><a href="#work">Our Work</a><a href="#experience">Experience</a>
     <a class="btn btn-small" href="https://forms.gle/JRaUjz5z9DtktjKK8" target="_blank" rel="noopener noreferrer">Let’s Work Together</a>
   </nav>
+  <button class="sound-toggle" type="button" aria-pressed="false" aria-label="Turn navigation sound on">SOUND OFF</button>
 </header>
+<div class="whoosh-layer" aria-hidden="true"><div class="whoosh-panel"><div class="whoosh-rule"></div><div class="whoosh-title">ABOUT <span>→</span></div><div class="whoosh-rule bottom"></div></div></div>
 
 <main id="top">
 <section class="hero section">
@@ -38,5 +41,6 @@
 <footer><div><img src="assets/logos/vyra-logo.jpg" alt="VYRA Collective"><p>Rise with purpose. Win together.</p></div><div><span>Creative Support</span><span>Business Support</span></div><div><a href="mailto:katherinearnaiz10@gmail.com">Email VYRA</a><span>© 2026 VYRA Collective</span></div></footer>
 <div class="modal" id="mediaModal" aria-hidden="true"><button class="modal-close" aria-label="Close">×</button><div class="modal-content"></div></div>
 <script src="script.js"></script>
+<script src="whoosh.js"></script>
 </body>
 </html>
