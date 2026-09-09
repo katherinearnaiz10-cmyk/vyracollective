@@ -1,0 +1,103 @@
+(()=>{
+  const layer=document.querySelector('.whoosh-layer');
+  const title=layer?.querySelector('.whoosh-title');
+  const soundToggle=document.querySelector('.sound-toggle');
+  const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+  const FORM_URL='https://forms.gle/JRaUjz5z9DtktjKK8';
+  const labels={'#about':'ABOUT','#services':'SERVICES','#work':'OUR WORK','#experience':'EXPERIENCE'};
+  let soundOn=sessionStorage.getItem('vyraSound')==='on';
+  let audioCtx=null;
+
+  function syncSoundButton(){
+    if(!soundToggle)return;
+    soundToggle.textContent=soundOn?'SOUND ON':'SOUND OFF';
+    soundToggle.setAttribute('aria-pressed',String(soundOn));
+    soundToggle.setAttribute('aria-label',soundOn?'Turn navigation sound off':'Turn navigation sound on');
+  }
+  syncSoundButton();
+
+  soundToggle?.addEventListener('click',()=>{
+    soundOn=!soundOn;
+    sessionStorage.setItem('vyraSound',soundOn?'on':'off');
+    if(soundOn){
+      audioCtx=audioCtx||new (window.AudioContext||window.webkitAudioContext)();
+      if(audioCtx.state==='suspended')audioCtx.resume();
+    }
+    syncSoundButton();
+  });
+
+  function playWhoosh(){
+    if(!soundOn)return;
+    try{
+      audioCtx=audioCtx||new (window.AudioContext||window.webkitAudioContext)();
+      if(audioCtx.state==='suspended')audioCtx.resume();
+      const duration=.32;
+      const length=Math.floor(audioCtx.sampleRate*duration);
+      const buffer=audioCtx.createBuffer(1,length,audioCtx.sampleRate);
+      const data=buffer.getChannelData(0);
+      for(let i=0;i<length;i++){
+        const t=i/length;
+        const envelope=Math.sin(Math.PI*t)*Math.pow(1-t,.35);
+        data[i]=(Math.random()*2-1)*envelope*.18;
+      }
+      const source=audioCtx.createBufferSource();
+      const filter=audioCtx.createBiquadFilter();
+      const gain=audioCtx.createGain();
+      filter.type='bandpass';filter.Q.value=.7;
+      filter.frequency.setValueAtTime(500,audioCtx.currentTime);
+      filter.frequency.exponentialRampToValueAtTime(1500,audioCtx.currentTime+duration);
+      gain.gain.setValueAtTime(.0001,audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(.075,audioCtx.currentTime+.055);
+      gain.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+duration);
+      source.buffer=buffer;source.connect(filter);filter.connect(gain);gain.connect(audioCtx.destination);source.start();
+    }catch(e){}
+  }
+
+  function arrive(target){
+    if(!target)return;
+    target.classList.remove('whoosh-arrive');
+    void target.offsetWidth;
+    target.classList.add('whoosh-arrive');
+    setTimeout(()=>target.classList.remove('whoosh-arrive'),500);
+  }
+
+  function runWhoosh(label,callback){
+    if(reduceMotion.matches){callback();return;}
+    if(!layer||!title){callback();return;}
+    title.innerHTML=label==='LET’S WORK TOGETHER'?'LET’S<br>WORK<br>TOGETHER. <span>→</span>':`${label} <span>→</span>`;
+    layer.classList.remove('is-whooshing');
+    void layer.offsetWidth;
+    layer.classList.add('is-whooshing');
+    playWhoosh();
+    setTimeout(callback,360);
+    setTimeout(()=>layer.classList.remove('is-whooshing'),720);
+  }
+
+  document.querySelectorAll('.nav a[href^="#"]').forEach(link=>{
+    const hash=link.getAttribute('href');
+    if(!labels[hash])return;
+    link.addEventListener('click',e=>{
+      e.preventDefault();
+      link.classList.add('nav-press');setTimeout(()=>link.classList.remove('nav-press'),130);
+      document.querySelector('.nav')?.classList.remove('open');
+      const target=document.querySelector(hash);
+      runWhoosh(labels[hash],()=>{
+        target?.scrollIntoView({behavior:'smooth',block:'start'});
+        arrive(target);
+        history.replaceState(null,'',hash);
+      });
+    });
+  });
+
+  document.querySelectorAll(`a[href="${FORM_URL}"]`).forEach(link=>{
+    link.addEventListener('click',e=>{
+      e.preventDefault();
+      link.classList.add('nav-press');setTimeout(()=>link.classList.remove('nav-press'),130);
+      document.querySelector('.nav')?.classList.remove('open');
+      if(reduceMotion.matches){window.open(FORM_URL,'_blank','noopener,noreferrer');return;}
+      runWhoosh('LET’S WORK TOGETHER',()=>{
+        setTimeout(()=>window.open(FORM_URL,'_blank','noopener,noreferrer'),220);
+      });
+    });
+  });
+})();
