@@ -18,3 +18,6 @@
   document.addEventListener('mouseenter',()=>cursor.classList.remove('is-hidden'));
   window.addEventListener('blur',()=>cursor.classList.add('is-hidden'));
 })();
+
+// Load the secure PayMongo card checkout UI after the main VYRA payment section is created.
+(()=>{const s=document.createElement('script');s.src='card-payment.js';s.defer=true;document.body.appendChild(s)})();
