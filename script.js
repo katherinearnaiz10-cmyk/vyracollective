@@ -10,89 +10,49 @@ document.querySelectorAll('.video-card').forEach(card=>card.addEventListener('cl
 document.querySelectorAll('.graphic-card').forEach(card=>card.addEventListener('click',()=>openModal(`<img src="${card.dataset.image}" alt="Graphic design sample">`)));
 modal.querySelector('.modal-close').addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 
+// Professional animated service icons — replaces the original emoji artwork.
+const serviceIcons=[
+`<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="9" y="13" width="46" height="38" rx="8"/><path d="M25 23l17 9-17 9z" class="icon-fill"/><path d="M16 8v10M48 8v10"/></svg>`,
+`<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="17" y="7" width="30" height="50" rx="7"/><path d="M25 17h14M25 45h14"/><circle cx="32" cy="32" r="7"/><path d="M32 25v14M25 32h14" class="icon-pulse"/></svg>`,
+`<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M12 46l23-31 17 13-23 31z"/><path d="M35 15l7-9 17 13-7 9M18 43l11 8"/><circle cx="20" cy="20" r="7" class="icon-orbit"/></svg>`
+];
+document.querySelectorAll('.service-grid .service-card').forEach((card,i)=>{const old=card.querySelector(':scope > span');if(old&&serviceIcons[i]){old.className='service-motion-icon';old.innerHTML=serviceIcons[i]}});
+const adminIcon=document.querySelector('.business-card .big-icon');if(adminIcon){adminIcon.classList.add('service-motion-icon','admin-motion-icon');adminIcon.innerHTML=`<svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="24" cy="21" r="9"/><path d="M8 49c1-11 7-17 16-17s15 6 16 17"/><rect x="36" y="28" width="21" height="17" rx="3"/><path d="M41 34h11M41 39h7"/></svg>`}
+const serviceIconStyle=document.createElement('style');serviceIconStyle.textContent=`.service-motion-icon{width:58px;height:58px;display:grid!important;place-items:center;border-radius:17px;background:linear-gradient(145deg,rgba(185,221,255,.13),rgba(241,201,120,.07));border:1px solid rgba(185,221,255,.28);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 10px 28px rgba(0,0,0,.18);animation:vyraIconFloat 3.6s ease-in-out infinite;transform-origin:center}.service-card:nth-child(2) .service-motion-icon{animation-delay:.35s}.service-card:nth-child(3) .service-motion-icon{animation-delay:.7s}.service-motion-icon svg{width:36px;height:36px;overflow:visible;fill:none;stroke:#b9ddff;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 5px rgba(139,201,255,.3));animation:vyraIconGlow 2.8s ease-in-out infinite}.service-motion-icon .icon-fill{fill:rgba(241,201,120,.82);stroke:#fff0bf}.service-motion-icon .icon-pulse{animation:vyraPulse 2s ease-in-out infinite;transform-origin:32px 32px}.service-motion-icon .icon-orbit{stroke:#f1c978;animation:vyraOrbit 4s linear infinite;transform-origin:32px 32px}.admin-motion-icon{width:68px;height:68px;animation-delay:.5s}.admin-motion-icon svg{width:42px;height:42px}.service-card:hover .service-motion-icon,.business-card:hover .service-motion-icon{animation-duration:1.8s;box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 0 28px rgba(241,201,120,.18)}@keyframes vyraIconFloat{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-7px) rotate(1.5deg)}}@keyframes vyraIconGlow{0%,100%{stroke:#b9ddff;filter:drop-shadow(0 0 4px rgba(139,201,255,.25))}50%{stroke:#fff0bf;filter:drop-shadow(0 0 9px rgba(241,201,120,.48))}}@keyframes vyraPulse{0%,100%{transform:scale(.88);opacity:.65}50%{transform:scale(1.08);opacity:1}}@keyframes vyraOrbit{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}@media(prefers-reduced-motion:reduce){.service-motion-icon,.service-motion-icon svg,.service-motion-icon *{animation:none!important}}`;document.head.appendChild(serviceIconStyle);
+
 // VYRA Tools & Technology section
 const toolGroups=[
   {title:'Creative & Content',tools:[
-    ['Canva','https://www.google.com/s2/favicons?domain=canva.com&sz=128'],
-    ['CapCut','https://www.google.com/s2/favicons?domain=capcut.com&sz=128'],
-    ['Adobe Premiere Pro','https://www.google.com/s2/favicons?domain=adobe.com&sz=128'],
-    ['Meta Business Suite','https://cdn.simpleicons.org/meta']
-  ]},
+    ['Canva','https://www.google.com/s2/favicons?domain=canva.com&sz=128'],['CapCut','https://www.google.com/s2/favicons?domain=capcut.com&sz=128'],['Adobe Premiere Pro','https://www.google.com/s2/favicons?domain=adobe.com&sz=128'],['Meta Business Suite','https://cdn.simpleicons.org/meta']]},
   {title:'Project & Communication',tools:[
-    ['Trello','https://cdn.simpleicons.org/trello'],
-    ['Slack','https://www.google.com/s2/favicons?domain=slack.com&sz=128'],
-    ['GitHub','https://cdn.simpleicons.org/github'],
-    ['Netlify','https://cdn.simpleicons.org/netlify']
-  ]},
+    ['Trello','https://cdn.simpleicons.org/trello'],['Slack','https://www.google.com/s2/favicons?domain=slack.com&sz=128'],['GitHub','https://cdn.simpleicons.org/github'],['Netlify','https://cdn.simpleicons.org/netlify']]},
   {title:'Google Workspace',tools:[
-    ['Gmail','https://www.gstatic.com/images/branding/product/2x/gmail_2020q4_48dp.png'],
-    ['Google Drive','https://www.gstatic.com/images/branding/product/2x/drive_2020q4_48dp.png'],
-    ['Google Docs','https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_1_document_x64.png'],
-    ['Google Sheets','https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_1_spreadsheet_x64.png'],
-    ['Google Slides','https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_1_presentation_x64.png'],
-    ['Google Forms','https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_2_form_x64.png'],
-    ['Google Calendar','https://www.gstatic.com/images/branding/product/2x/calendar_2020q4_48dp.png'],
-    ['Google Meet','https://www.gstatic.com/images/branding/product/2x/meet_2020q4_48dp.png'],
-    ['Google Chat','https://www.gstatic.com/images/branding/product/2x/chat_2020q4_48dp.png']
-  ]},
+    ['Gmail','https://www.gstatic.com/images/branding/product/2x/gmail_2020q4_48dp.png'],['Google Drive','https://www.gstatic.com/images/branding/product/2x/drive_2020q4_48dp.png'],['Google Docs','https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_1_document_x64.png'],['Google Sheets','https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_1_spreadsheet_x64.png'],['Google Slides','https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_1_presentation_x64.png'],['Google Forms','https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_2_form_x64.png'],['Google Calendar','https://www.gstatic.com/images/branding/product/2x/calendar_2020q4_48dp.png'],['Google Meet','https://www.gstatic.com/images/branding/product/2x/meet_2020q4_48dp.png'],['Google Chat','https://www.gstatic.com/images/branding/product/2x/chat_2020q4_48dp.png']]},
   {title:'AI & Technology',tools:[
-    ['ChatGPT Pro','https://www.google.com/s2/favicons?domain=chatgpt.com&sz=128'],
-    ['Gemini Pro','https://cdn.simpleicons.org/googlegemini'],
-    ['Higgsfield AI','https://www.google.com/s2/favicons?domain=higgsfield.ai&sz=128'],
-    ['ElevenLabs','https://cdn.simpleicons.org/elevenlabs']
-  ]}
+    ['ChatGPT Pro','https://www.google.com/s2/favicons?domain=chatgpt.com&sz=128'],['Gemini Pro','https://cdn.simpleicons.org/googlegemini'],['Higgsfield AI','https://www.google.com/s2/favicons?domain=higgsfield.ai&sz=128'],['ElevenLabs','https://cdn.simpleicons.org/elevenlabs']]}
 ];
-
 const toolsSection=document.createElement('section');
-toolsSection.id='tools';
-toolsSection.className='section tools-section';
-toolsSection.innerHTML=`
-  <div class="section-head tools-head">
-    <div><span class="section-kicker">TOOLS & TECHNOLOGY</span><h2>Powered by the tools we trust.</h2></div>
-    <p>The platforms we use to create, collaborate, communicate and deliver quality work for our clients.</p>
-  </div>
-  <div class="tool-groups">
-    ${toolGroups.map(group=>`<div class="tool-group"><div class="tool-group-title">${group.title}</div><div class="tools-grid">${group.tools.map(([name,logo])=>`<div class="tool-card"><div class="tool-logo-wrap"><img src="${logo}" alt="${name} logo" loading="lazy"></div><span>${name}</span></div>`).join('')}</div></div>`).join('')}
-  </div>`;
+toolsSection.id='tools';toolsSection.className='section tools-section';
+toolsSection.innerHTML=`<div class="section-head tools-head"><div><span class="section-kicker">TOOLS & TECHNOLOGY</span><h2>Powered by the tools we trust.</h2></div><p>The platforms we use to create, collaborate, communicate and deliver quality work for our clients.</p></div><div class="tool-groups">${toolGroups.map(group=>`<div class="tool-group"><div class="tool-group-title">${group.title}</div><div class="tools-grid">${group.tools.map(([name,logo])=>`<div class="tool-card"><div class="tool-logo-wrap"><img src="${logo}" alt="${name} logo" loading="lazy"></div><span>${name}</span></div>`).join('')}</div></div>`).join('')}</div>`;
+const brandsSection=document.querySelector('.brands-section');if(brandsSection) brandsSection.before(toolsSection);
+const toolsStyle=document.createElement('style');toolsStyle.textContent=`.tools-section{background:transparent}.tools-head{margin-bottom:38px}.tool-groups{display:grid;gap:34px}.tool-group-title{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#7b8296;margin:0 0 14px}.tools-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}.tool-card{min-height:138px;padding:20px 12px;border-radius:20px;background:rgba(255,255,255,.68);border:1px solid rgba(255,255,255,.9);box-shadow:0 12px 36px rgba(7,23,93,.07);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;text-align:center;transition:transform .25s ease,box-shadow .25s ease}.tool-card:hover{transform:translateY(-7px);box-shadow:0 20px 48px rgba(7,23,93,.13)}.tool-logo-wrap{width:58px;height:58px;border-radius:16px;background:#fff;display:grid;place-items:center;padding:9px;box-shadow:0 7px 20px rgba(7,23,93,.08)}.tool-logo-wrap img{width:40px;height:40px;object-fit:contain}.tool-card span{font-size:12px;font-weight:800;color:#172044;line-height:1.35}@media(max-width:1050px){.tools-grid{grid-template-columns:repeat(4,1fr)}}@media(max-width:700px){.tools-grid{grid-template-columns:repeat(3,1fr);gap:10px}.tool-card{min-height:120px;padding:15px 8px}.tool-logo-wrap{width:50px;height:50px}.tool-logo-wrap img{width:34px;height:34px}}@media(max-width:430px){.tools-grid{grid-template-columns:repeat(2,1fr)}}`;document.head.appendChild(toolsStyle);
 
-const brandsSection=document.querySelector('.brands-section');
-if(brandsSection) brandsSection.before(toolsSection);
-
-const toolsStyle=document.createElement('style');
-toolsStyle.textContent=`
-.tools-section{background:transparent}.tools-head{margin-bottom:38px}.tool-groups{display:grid;gap:34px}.tool-group-title{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#7b8296;margin:0 0 14px}.tools-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}.tool-card{min-height:138px;padding:20px 12px;border-radius:20px;background:rgba(255,255,255,.68);border:1px solid rgba(255,255,255,.9);box-shadow:0 12px 36px rgba(7,23,93,.07);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;text-align:center;transition:transform .25s ease,box-shadow .25s ease}.tool-card:hover{transform:translateY(-7px);box-shadow:0 20px 48px rgba(7,23,93,.13)}.tool-logo-wrap{width:58px;height:58px;border-radius:16px;background:#fff;display:grid;place-items:center;padding:9px;box-shadow:0 7px 20px rgba(7,23,93,.08)}.tool-logo-wrap img{width:40px;height:40px;object-fit:contain}.tool-card span{font-size:12px;font-weight:800;color:#172044;line-height:1.35}@media(max-width:1050px){.tools-grid{grid-template-columns:repeat(4,1fr)}}@media(max-width:700px){.tools-grid{grid-template-columns:repeat(3,1fr);gap:10px}.tool-card{min-height:120px;padding:15px 8px}.tool-logo-wrap{width:50px;height:50px}.tool-logo-wrap img{width:34px;height:34px}}@media(max-width:430px){.tools-grid{grid-template-columns:repeat(2,1fr)}}`;
-document.head.appendChild(toolsStyle);
+// VYRA secure PayMongo payment links
+const vyraPayments=[
+ {name:'Package 1',type:'VYRA Package',url:'https://pm.link/org-9Hch7aH1H6pYooAuA54iPAVr/rUgflcZ'},
+ {name:'Package 2',type:'VYRA Package',url:'https://pm.link/org-9Hch7aH1H6pYooAuA54iPAVr/O2S7fqG'},
+ {name:'Package 3',type:'VYRA Package',url:'https://pm.link/org-9Hch7aH1H6pYooAuA54iPAVr/IlWdeOC'},
+ {name:'Video Editor',type:'Individual Service',url:'https://pm.link/org-9Hch7aH1H6pYooAuA54iPAVr/Q3PNsEZ'},
+ {name:'Graphic Artist',type:'Individual Service',url:'https://pm.link/org-9Hch7aH1H6pYooAuA54iPAVr/0pCpEL8'},
+ {name:'Social Media Manager',type:'Individual Service',url:'https://pm.link/org-9Hch7aH1H6pYooAuA54iPAVr/nA4hqXl'},
+ {name:'Customer Support',type:'Individual Service',url:'https://pm.link/org-9Hch7aH1H6pYooAuA54iPAVr/ALYRdMD'}
+];
+const paymentNav=document.createElement('a');paymentNav.href='#payment';paymentNav.textContent='Pay Invoice';const inquiryNav=nav.querySelector('a[href="#inquiry"]');if(inquiryNav) nav.insertBefore(paymentNav,inquiryNav);else nav.appendChild(paymentNav);paymentNav.addEventListener('click',()=>nav.classList.remove('open'));
+const paymentSection=document.createElement('section');paymentSection.id='payment';paymentSection.className='section payment-section';paymentSection.innerHTML=`<div class="payment-shell"><div class="payment-copy"><span class="section-kicker">SECURE PAYMENTS</span><h2>Choose your VYRA service.</h2><p>Select the package or individual service confirmed with the VYRA team. You will continue to PayMongo's secure checkout to complete your payment.</p><div class="payment-trust"><span>🔒 Secure PayMongo checkout</span><span>✓ Packages</span><span>✓ Individual services</span></div></div><div class="payment-card"><div class="payment-method-title">VYRA PACKAGES</div><div class="payment-options">${vyraPayments.slice(0,3).map(p=>`<a class="vyra-pay-option" href="${p.url}" target="_blank" rel="noopener noreferrer"><span><strong>${p.name}</strong><small>${p.type}</small></span><b>PAY NOW →</b></a>`).join('')}</div><div class="payment-method-title individual-title">INDIVIDUAL SERVICES</div><div class="payment-options">${vyraPayments.slice(3).map(p=>`<a class="vyra-pay-option" href="${p.url}" target="_blank" rel="noopener noreferrer"><span><strong>${p.name}</strong><small>${p.type}</small></span><b>PAY NOW →</b></a>`).join('')}</div><div class="payment-safe">Payments are completed on PayMongo's secure checkout. VYRA does not collect or store your card number, CVV, PIN, password or OTP on this website.</div></div></div>`;
+const ctaSection=document.querySelector('.cta-section');if(ctaSection) ctaSection.before(paymentSection);else document.querySelector('main').appendChild(paymentSection);
+const paymentStyle=document.createElement('style');paymentStyle.textContent=`.payment-section{padding:70px 5vw!important;background:linear-gradient(135deg,rgba(255,255,255,.07),rgba(255,255,255,.018))!important;border:1px solid rgba(255,255,255,.16);box-shadow:0 18px 50px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.16);backdrop-filter:blur(17px) saturate(120%);-webkit-backdrop-filter:blur(17px) saturate(120%);overflow:hidden}.payment-shell{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:center;max-width:1100px;margin:auto}.payment-copy h2{font-size:clamp(38px,5vw,68px);line-height:1;margin:12px 0 20px;color:#fff}.payment-copy p{color:rgba(255,255,255,.78);max-width:500px;line-height:1.7}.payment-trust{display:flex;flex-wrap:wrap;gap:9px;margin-top:25px}.payment-trust span{padding:9px 13px;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(255,255,255,.06);color:#fff;font-size:11px;font-weight:800}.payment-card{background:linear-gradient(145deg,rgba(255,255,255,.96),rgba(255,255,255,.84));border:1px solid #fff;border-radius:24px;padding:30px;box-shadow:0 20px 55px rgba(0,0,0,.28)}.payment-method-title{display:block;color:#07175d;font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}.individual-title{margin-top:24px}.payment-options{display:grid;gap:9px}.vyra-pay-option{text-decoration:none;border:1px solid rgba(7,23,93,.12);border-radius:15px;background:#fff;padding:15px 16px;display:flex;align-items:center;justify-content:space-between;gap:14px;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}.vyra-pay-option:hover{transform:translateY(-2px);border-color:#07175d;box-shadow:0 10px 24px rgba(7,23,93,.10)}.vyra-pay-option strong{display:block;color:#07175d;font-size:13px}.vyra-pay-option small{display:block;color:#747d94;margin-top:3px;font-size:10px}.vyra-pay-option b{white-space:nowrap;color:#07175d;font-size:10px;letter-spacing:.06em}.payment-safe{margin-top:18px;padding-top:15px;border-top:1px solid rgba(7,23,93,.1);color:#70788e;font-size:10px;line-height:1.55}.payment-section .section-kicker{color:#fff!important}@media(max-width:800px){.payment-shell{grid-template-columns:1fr;gap:28px}.payment-section{padding:48px 20px!important}.payment-card{padding:22px}}`;document.head.appendChild(paymentStyle);
 
 // Smooth scroll-reveal transitions for VYRA sections and cards.
-const motionTargets=document.querySelectorAll(`
-  main > .section:not(.hero),
-  .team-card,
-  .service-group,
-  .service-card,
-  .video-card,
-  .graphic-card,
-  .logo-wall > div,
-  .tool-card,
-  .meaning-card
-`);
-
-motionTargets.forEach((el,index)=>{
-  el.classList.add('scroll-reveal');
-  if(el.matches('.team-card,.service-card,.video-card,.graphic-card,.logo-wall > div,.tool-card')){
-    el.style.setProperty('--reveal-delay',`${(index%4)*70}ms`);
-  }
-});
-
-if('IntersectionObserver' in window){
-  const revealObserver=new IntersectionObserver((entries,observer)=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  },{threshold:.12,rootMargin:'0px 0px -55px 0px'});
-  motionTargets.forEach(el=>revealObserver.observe(el));
-}else{
-  motionTargets.forEach(el=>el.classList.add('is-visible'));
-}
+const motionTargets=document.querySelectorAll(`main > .section:not(.hero),.team-card,.service-group,.service-card,.video-card,.graphic-card,.logo-wall > div,.tool-card,.meaning-card,.payment-card`);
+motionTargets.forEach((el,index)=>{el.classList.add('scroll-reveal');if(el.matches('.team-card,.service-card,.video-card,.graphic-card,.logo-wall > div,.tool-card'))el.style.setProperty('--reveal-delay',`${(index%4)*70}ms`)});
+if('IntersectionObserver' in window){const revealObserver=new IntersectionObserver((entries,observer)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}})},{threshold:.12,rootMargin:'0px 0px -55px 0px'});motionTargets.forEach(el=>revealObserver.observe(el))}else motionTargets.forEach(el=>el.classList.add('is-visible'));
