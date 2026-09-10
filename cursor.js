@@ -1,8 +1,16 @@
-// Load the secure PayMongo card checkout UI after the main VYRA payment section is created.
-(()=>{const s=document.createElement('script');s.src='card-payment.js';s.defer=true;document.body.appendChild(s)})();
-
 // Load VYRA cinematic portfolio interactions.
 (()=>{const s=document.createElement('script');s.src='portfolio-upgrade.js';s.defer=true;document.body.appendChild(s)})();
+
+// Temporarily remove the Pay Invoice navigation tab and payment details from the live page.
+(()=>{
+  const hidePayment=()=>{
+    document.querySelectorAll('a[href="#payment"]').forEach(el=>el.remove());
+    document.querySelectorAll('#payment,.payment-section').forEach(el=>el.remove());
+  };
+  hidePayment();
+  let tries=0;
+  const timer=setInterval(()=>{hidePayment();if(++tries>100)clearInterval(timer)},100);
+})();
 
 // Add AnyDesk and Chrome Remote Desktop directly to the existing Tools & Technology grid.
 (()=>{
