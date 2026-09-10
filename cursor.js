@@ -3,3 +3,6 @@
 
 // Load VYRA cinematic portfolio interactions.
 (()=>{const s=document.createElement('script');s.src='portfolio-upgrade.js';s.defer=true;document.body.appendChild(s)})();
+
+// Add AnyDesk and Chrome Remote Desktop to Tools & Technology.
+(()=>{const s=document.createElement('script');s.src='remote-tools.js';s.defer=true;document.body.appendChild(s)})();
