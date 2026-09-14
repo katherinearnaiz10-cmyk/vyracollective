@@ -33,3 +33,16 @@
     }
   });
 })();
+
+// VYRA internal Lead Tracker navigation link
+(()=>{
+  const nav=document.querySelector('.site-header .nav');
+  if(!nav || nav.querySelector('a[href="lead-tracker.html"]')) return;
+  const tracker=document.createElement('a');
+  tracker.href='lead-tracker.html';
+  tracker.textContent='Lead Tracker';
+  tracker.setAttribute('aria-label','Open VYRA Client and Lead Tracker');
+  const inquiry=nav.querySelector('a[href="#inquiry"]');
+  if(inquiry) nav.insertBefore(tracker,inquiry); else nav.appendChild(tracker);
+  tracker.addEventListener('click',()=>nav.classList.remove('open'));
+})();
