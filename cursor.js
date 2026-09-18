@@ -12,6 +12,22 @@
   const timer=setInterval(()=>{hidePayment();if(++tries>100)clearInterval(timer)},100);
 })();
 
+// Add Our People navigation tab linking directly to the VYRA team section.
+(()=>{
+  const addOurPeople=()=>{
+    const nav=document.querySelector('.nav');
+    if(!nav||nav.querySelector('a[href="#team"]'))return !!nav;
+    const link=document.createElement('a');
+    link.href='#team';
+    link.textContent='Our People';
+    const services=nav.querySelector('a[href="#services"]');
+    if(services)nav.insertBefore(link,services);else nav.prepend(link);
+    link.addEventListener('click',()=>nav.classList.remove('open'));
+    return true;
+  };
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',addOurPeople,{once:true});else addOurPeople();
+})();
+
 // Add AnyDesk and Chrome Remote Desktop directly to the existing Tools & Technology grid.
 (()=>{
   const addRemoteTools=()=>{
