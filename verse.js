@@ -13,3 +13,14 @@ bar.addEventListener('click',()=>setOpen(!shell.classList.contains('is-open')));
 close.addEventListener('click',e=>{e.stopPropagation();setOpen(false);bar.focus()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&shell.classList.contains('is-open'))setOpen(false)});
 })();
+
+// VYRA team — Lead Generation & Client Specialist
+(()=>{
+const teamGrid=document.querySelector('#team .team-grid');
+if(!teamGrid||teamGrid.querySelector('[data-team-member="blessing-chisom-onyeka"]'))return;
+const card=document.createElement('div');
+card.className='team-card';
+card.dataset.teamMember='blessing-chisom-onyeka';
+card.innerHTML='<div class="team-photo"><img src="assets/team/blessing.svg" alt="Blessing Chisom Onyeka"></div><h3>Blessing Chisom Onyeka</h3><p>Lead Generation &amp; Client Specialist</p>';
+teamGrid.appendChild(card);
+})();
