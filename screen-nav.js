@@ -4,29 +4,18 @@ const header=document.querySelector('.site-header');
 if(!main||!header)return;
 
 const hero=main.querySelector('.hero'); if(hero) hero.id='home';
-const team=main.querySelector('.team-section'); if(team&&!team.id) team.id='team';
-const tools=main.querySelector('.tools-section'); if(tools&&!tools.id) tools.id='tools';
-const brands=main.querySelector('.brands-section'); if(brands&&!brands.id) brands.id='brands';
-const meaning=main.querySelector('.meaning-section'); if(meaning&&!meaning.id) meaning.id='meaning';
-const payment=main.querySelector('.payment-section'); if(payment&&!payment.id) payment.id='payment';
-
 const sections=[...main.querySelectorAll(':scope > section')];
 sections.forEach((section,i)=>{if(!section.id)section.id='screen-'+(i+1);section.classList.add('vyra-screen')});
 
-// Keep the original top navigation. Remove the temporary left-side screen menu if present.
+// Keep ONLY the original header tabs: About, Services, Our Work, Experience, Let's Work Together.
 document.getElementById('vyraScreenMenu')?.remove();
 document.querySelector('.vyra-screen-overlay')?.remove();
-const oldMenu=header.querySelector('.menu-btn');if(oldMenu)oldMenu.style.removeProperty('display');
-const nav=header.querySelector('.nav');if(nav)nav.style.removeProperty('display');
-
-// Add the useful screen links to the same top navigation style.
-const topLinks=[['#home','Home'],['#about','About'],['#team','Team'],['#services','Services'],['#work','Our Work'],['#tools','Tools'],['#experience','Experience']];
-if(nav){
- const inquiry=nav.querySelector('a[href="#inquiry"]');
- topLinks.forEach(([href,label])=>{
-   if(nav.querySelector(`a[href="${href}"]`))return;
-   const a=document.createElement('a');a.href=href;a.textContent=label;
-   if(inquiry)nav.insertBefore(a,inquiry);else nav.appendChild(a);
+const menuBtn=header.querySelector('.menu-btn');if(menuBtn)menuBtn.style.removeProperty('display');
+const nav=header.querySelector('.nav');if(nav){
+ nav.style.removeProperty('display');
+ nav.querySelectorAll('a').forEach(a=>{
+   const href=a.getAttribute('href');
+   if(!['#about','#services','#work','#experience','#inquiry'].includes(href))a.remove();
  });
 }
 
