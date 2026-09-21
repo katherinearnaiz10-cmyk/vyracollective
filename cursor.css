@@ -6,3 +6,12 @@
   .vyra-cursor{display:none!important}
 }
 @media (pointer:coarse),(max-width:768px){.vyra-cursor{display:none!important}}
+
+/* Hero tagline — pure white text only */
+.hero h1,
+.hero h1 *{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  -webkit-text-stroke:0!important;
+  text-shadow:none!important;
+}
