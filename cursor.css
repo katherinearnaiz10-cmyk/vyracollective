@@ -15,3 +15,12 @@
   -webkit-text-stroke:0!important;
   text-shadow:none!important;
 }
+
+/* Portfolio navigation cleanup: only one Next control per active portfolio section. */
+#work .portfolio-panel .next + .next,
+#work .portfolio-panel .next-btn + .next-btn,
+#work .portfolio-panel .portfolio-next + .portfolio-next,
+#work .portfolio-panel [aria-label="Next"] + [aria-label="Next"],
+#work .portfolio-panel [aria-label="Next slide"] + [aria-label="Next slide"]{
+  display:none!important;
+}
