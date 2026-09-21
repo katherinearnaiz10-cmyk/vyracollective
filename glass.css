@@ -20,6 +20,7 @@ footer{margin-top:36px;background:rgba(0,6,14,.88)!important;border-top:1px soli
 /* Remove legacy duplicate Blessing card that used the deleted SVG; keep the clear JPEG card. */
 .team-card:has(img[src$="blessing.svg"]){display:none!important}
 
-/* Header cleanup: hide upper-left logo and moving verse bar/panel. */
+/* Header cleanup: hide upper-left logo, moving verse, and sound toggle. */
 .site-header .brand{display:none!important}
 .verse-shell{display:none!important}
+.sound-toggle{display:none!important}
