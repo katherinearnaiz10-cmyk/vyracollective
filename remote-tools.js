@@ -20,8 +20,21 @@
     });
     return true;
   };
-  if(addRemoteTools())return;
-  const observer=new MutationObserver(()=>{if(addRemoteTools())observer.disconnect()});
-  observer.observe(document.documentElement,{childList:true,subtree:true});
-  setTimeout(()=>observer.disconnect(),8000);
+  if(!addRemoteTools()){
+    const observer=new MutationObserver(()=>{if(addRemoteTools())observer.disconnect()});
+    observer.observe(document.documentElement,{childList:true,subtree:true});
+    setTimeout(()=>observer.disconnect(),8000);
+  }
+
+  // Keep Blessing's public team name consistent across the VYRA website.
+  const updateBlessingName=()=>{
+    document.querySelectorAll('#team .team-card').forEach(card=>{
+      const heading=card.querySelector('h3');
+      const image=card.querySelector('img');
+      if(heading && heading.textContent.trim()==='Blessing Chisom Onyeka') heading.textContent='Blessing Chisom Eze';
+      if(image && image.alt.trim()==='Blessing Chisom Onyeka') image.alt='Blessing Chisom Eze';
+    });
+  };
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',updateBlessingName);
+  else updateBlessingName();
 })();
