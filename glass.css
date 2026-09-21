@@ -24,3 +24,6 @@ footer{margin-top:36px;background:rgba(0,6,14,.88)!important;border-top:1px soli
 .site-header .brand{display:none!important}
 .verse-shell{display:none!important}
 .sound-toggle{display:none!important}
+
+/* Fixed brand verse beneath Victory + Rise in About VYRA. */
+#about .split-grid>div:first-child h2::after{content:'“Whatever you do, work at it with all your heart, as working for the Lord, not for human masters.”\A— Colossians 3:23';white-space:pre-line;display:block;margin-top:20px;max-width:430px;font-family:Manrope,sans-serif;font-size:15px;line-height:1.7;font-weight:500;font-style:italic;letter-spacing:.01em;color:rgba(226,239,251,.78);-webkit-text-stroke:0;text-shadow:none}
