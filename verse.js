@@ -3,7 +3,7 @@ const verse=['Whatever you do, work at it with all your heart, as working for th
 const track=document.getElementById('verseTrack'),shell=document.getElementById('verseShell'),bar=document.getElementById('verseBar'),panel=document.getElementById('versePanel'),close=document.getElementById('verseClose');
 if(!track||!shell||!bar||!panel||!close)return;
 const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
-const item=`<span class="verse-item"><span aria-hidden="true">▱</span><span class="verse-label">VERSE OF THE DAY</span><span class="verse-divider">|</span><span class="verse-copy">“${esc(verse[0])}”</span><span class="verse-ref">— ${esc(verse[1]).toUpperCase()}</span><span class="verse-star">✦</span></span>`;
+const item=`<span class="verse-item"><span class="verse-label">VERSE OF THE DAY</span><span class="verse-divider">|</span><span class="verse-copy">“${esc(verse[0])}”</span><span class="verse-ref">— ${esc(verse[1]).toUpperCase()}</span></span>`;
 track.innerHTML=item+item+item+item;
 document.getElementById('verseFullText').textContent='“'+verse[0]+'”';
 document.getElementById('verseFullRef').textContent='— '+verse[1].toUpperCase();
