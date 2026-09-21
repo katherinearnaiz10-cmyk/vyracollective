@@ -37,4 +37,14 @@
   };
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',updateBlessingName);
   else updateBlessingName();
+
+  // Load the VYRA screen-by-screen navigation layer.
+  const screenCss=document.createElement('link');
+  screenCss.rel='stylesheet';
+  screenCss.href='screen-nav.css?v=1';
+  document.head.appendChild(screenCss);
+  const screenScript=document.createElement('script');
+  screenScript.src='screen-nav.js?v=1';
+  screenScript.defer=true;
+  document.body.appendChild(screenScript);
 })();
