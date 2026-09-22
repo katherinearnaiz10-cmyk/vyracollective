@@ -1,4 +1,5 @@
 (()=>{
+  if(!document.querySelector('link[href="hero-mark-animation.css"]')){const anim=document.createElement('link');anim.rel='stylesheet';anim.href='hero-mark-animation.css?v=20260922';document.head.appendChild(anim)}
   const form=document.getElementById('vyraInquiryForm');
   const bookingUrl='https://calendar.app.google/iarNpo68qgn3ZdXP8';
   if(form){
