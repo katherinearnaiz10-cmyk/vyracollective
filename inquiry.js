@@ -14,8 +14,14 @@
       if(submit){submit.disabled=true;submit.textContent='SENDING...'}status.textContent='Sending your inquiry…';status.style.color='';
       try{
         const fd=new FormData(form);const payload={full_name:String(fd.get('full_name')||''),email:String(fd.get('email')||''),company:String(fd.get('company')||''),website:String(fd.get('website')||''),services:fd.getAll('services').map(String),budget:String(fd.get('budget')||''),message:String(fd.get('message')||''),goals:String(fd.get('message')||'')};
-        const dbResponse=await fetch(inquiryApi,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});let dbData={};try{dbData=await dbResponse.json()}catch(_){}if(!dbResponse.ok)throw new Error(dbData.error||'Could not save inquiry');
-        try{await fetch(form.action,{method:'POST',body:fd,headers:{Accept:'application/json'}})}catch(mailErr){console.warn('Email notification fallback failed',mailErr)}
+        // Deliver the inquiry through Formspree and save a copy to VYRA Supabase. Either successful channel is enough to accept the inquiry.
+        const [dbResult,mailResult]=await Promise.allSettled([
+          fetch(inquiryApi,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).then(async r=>{if(!r.ok){let x={};try{x=await r.json()}catch(_){}throw new Error(x.error||'Database save failed')}return r}),
+          fetch(form.action,{method:'POST',body:fd,headers:{Accept:'application/json'}}).then(r=>{if(!r.ok)throw new Error('Email delivery failed');return r})
+        ]);
+        if(dbResult.status==='rejected'&&mailResult.status==='rejected')throw new Error('Both inquiry channels failed');
+        if(dbResult.status==='rejected')console.warn('Supabase copy failed; inquiry was delivered by email.',dbResult.reason);
+        if(mailResult.status==='rejected')console.warn('Email notification failed; inquiry was saved in VYRA.',mailResult.reason);
         const first=document.getElementById('successFirstName');if(first)first.textContent=(payload.full_name.trim().split(/\s+/)[0]||'THERE').toUpperCase();
         form.reset();formCard.hidden=true;success.hidden=false;success.scrollIntoView({behavior:'smooth',block:'center'});
       }catch(err){console.error(err);status.textContent='We couldn’t send your inquiry. Please try again.';status.style.color='#ffd4d4'}finally{sending=false;if(submit){submit.disabled=false;submit.textContent='Send Inquiry'}}
