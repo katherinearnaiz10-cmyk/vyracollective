@@ -16,3 +16,14 @@ body:after{content:"";position:fixed;left:-10vw;right:-10vw;bottom:-15vh;height:
 footer{margin-top:36px;background:rgba(0,6,14,.88)!important;border-top:1px solid rgba(142,202,255,.15);box-shadow:0 -10px 50px rgba(0,0,0,.24);color:#d9ecff}footer a,footer span,footer p{color:#d9ecff!important}
 @media(max-width:1000px){.nav{background:rgba(1,10,22,.97)!important;backdrop-filter:blur(20px)!important}.nav a{color:#eef8ff!important}}
 @media(max-width:700px){.hero,.work-section,.section:not(.hero):not(.work-section){margin-left:12px;margin-right:12px}.hero,.section:not(.hero):not(.work-section),.work-section{border-radius:20px}.mark-card,.service-group:not(.dark),.service-card,.team-card,.logo-wall>div,.graphic-card,.tool-card,.video-card{border-radius:16px!important}.logo-wall>div{min-height:125px;padding:16px}.logo-wall img{max-width:86%;max-height:90px}}
+
+/* Remove legacy duplicate Blessing card that used the deleted SVG; keep the clear JPEG card. */
+.team-card:has(img[src$="blessing.svg"]){display:none!important}
+
+/* Header cleanup: hide upper-left logo, moving verse, and sound toggle. */
+.site-header .brand{display:none!important}
+.verse-shell{display:none!important}
+.sound-toggle{display:none!important}
+
+/* Fixed brand verse beneath Victory + Rise in About VYRA. */
+#about .split-grid>div:first-child h2::after{content:'“Whatever you do, work at it with all your heart, as working for the Lord, not for human masters.”\A— Colossians 3:23';white-space:pre-line;display:block;margin-top:20px;max-width:430px;font-family:Manrope,sans-serif;font-size:15px;line-height:1.7;font-weight:500;font-style:italic;letter-spacing:.01em;color:rgba(226,239,251,.78);-webkit-text-stroke:0;text-shadow:none}

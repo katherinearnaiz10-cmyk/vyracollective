@@ -1,0 +1,8 @@
+/* VYRA hero tagline: white text only */
+.hero h1,
+.hero h1 * {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  -webkit-text-stroke: 0 !important;
+  text-shadow: none !important;
+}

@@ -6,3 +6,29 @@
   .vyra-cursor{display:none!important}
 }
 @media (pointer:coarse),(max-width:768px){.vyra-cursor{display:none!important}}
+
+/* Hero tagline — pure white text only */
+.hero h1,
+.hero h1 *{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  -webkit-text-stroke:0!important;
+  text-shadow:none!important;
+}
+
+/* Portfolio carousel cleanup — keep exactly one navigation row per section. */
+#videos > .film-controls ~ .film-controls,
+#graphics > .graphic-controls ~ .graphic-controls{
+  display:none!important;
+}
+
+/* Blessing team photo — zoom/crop to visually match the other team portraits. */
+#team .team-card:has(img[src*="blessing.jpeg"]) .team-photo img,
+#team img[src*="blessing.jpeg"]{
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center 20%!important;
+  transform:scale(1.22);
+  transform-origin:center 25%;
+}

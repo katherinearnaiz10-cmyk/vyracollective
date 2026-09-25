@@ -1,35 +1,14 @@
 (()=>{
+  if(!document.querySelector('link[href="hero-mark-animation.css"]')){const anim=document.createElement('link');anim.rel='stylesheet';anim.href='hero-mark-animation.css?v=20260922';document.head.appendChild(anim)}
   const form=document.getElementById('vyraInquiryForm');
-  if(!form)return;
-  const submit=form.querySelector('.inquiry-submit');
-  const status=document.getElementById('inquiryStatus');
-  const success=document.getElementById('inquirySuccess');
-  const formCard=document.getElementById('inquiryFormCard');
-  const firstName=document.getElementById('successFirstName');
-  let sending=false;
-
-  form.addEventListener('submit',async(e)=>{
-    e.preventDefault();
-    if(sending)return;
-    if(!form.reportValidity())return;
-    sending=true;
-    submit.disabled=true;
-    submit.textContent='SENDING...';
-    status.textContent='';status.classList.remove('error');
-    try{
-      const response=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});
-      if(!response.ok)throw new Error('Submission failed');
-      const name=form.elements.full_name.value.trim();
-      firstName.textContent=(name.split(/\s+/)[0]||'THERE').toUpperCase();
-      formCard.hidden=true;
-      success.hidden=false;
-      success.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});
-      form.reset();
-    }catch(err){
-      status.textContent='We couldn’t send your inquiry just now. Please check your connection and try again.';
-      status.classList.add('error');
-    }finally{
-      sending=false;submit.disabled=false;submit.textContent='SEND MY INQUIRY →';
-    }
-  });
+  const bookingUrl='https://calendar.app.google/iarNpo68qgn3ZdXP8';
+  if(form){
+    const submit=form.querySelector('button[type="submit"]'),formCard=document.getElementById('inquiryFormCard');let sending=false;
+    let status=document.getElementById('inquiryStatus');if(!status){status=document.createElement('div');status.id='inquiryStatus';status.style.cssText='margin-top:12px;font-size:13px;line-height:1.5';form.appendChild(status)}
+    let success=document.getElementById('inquirySuccess');if(!success&&formCard){success=document.createElement('div');success.id='inquirySuccess';success.hidden=true;success.style.cssText='padding:34px;border:1px solid rgba(255,255,255,.18);border-radius:18px;text-align:center;background:rgba(255,255,255,.035)';success.innerHTML='<span class="section-kicker">INQUIRY RECEIVED ✓</span><h3 style="font-size:30px;margin:10px 0">Thank you, <span id="successFirstName">THERE</span>!</h3><p style="max-width:620px;margin:0 auto">Your inquiry has been sent to VYRA Collective. Our team will review your project details and get back to you soon.</p><button class="btn btn-ghost" id="sendAnotherInquiry" type="button" style="margin-top:22px">SEND ANOTHER INQUIRY</button>';formCard.insertAdjacentElement('afterend',success);success.querySelector('#sendAnotherInquiry').onclick=()=>{success.hidden=true;formCard.hidden=false;formCard.scrollIntoView({behavior:'smooth',block:'center'})}}
+    form.addEventListener('submit',async e=>{e.preventDefault();if(sending||!form.reportValidity())return;sending=true;if(submit){submit.disabled=true;submit.textContent='SENDING...'}status.textContent='Sending your inquiry…';status.style.color='';try{const fd=new FormData(form);const r=await fetch(form.action,{method:'POST',body:fd,headers:{Accept:'application/json'}});if(!r.ok)throw new Error('Inquiry delivery failed');const name=String(fd.get('full_name')||'').trim();const first=document.getElementById('successFirstName');if(first)first.textContent=(name.split(/\s+/)[0]||'THERE').toUpperCase();form.reset();formCard.hidden=true;success.hidden=false;success.scrollIntoView({behavior:'smooth',block:'center'});}catch(err){console.error('VYRA inquiry error:',err);status.textContent='We couldn’t send your inquiry. Please try again.';status.style.color='#ffd4d4'}finally{sending=false;if(submit){submit.disabled=false;submit.textContent='Send Inquiry'}}});
+  }
+  function addDiscoveryButtons(){const nav=document.querySelector('.site-header .nav');if(nav&&!nav.querySelector('.discovery-call-link')){const inquiry=nav.querySelector('a[href="#inquiry"]');const a=document.createElement('a');a.href=bookingUrl;a.target='_blank';a.rel='noopener';a.className='btn btn-small discovery-call-link';a.textContent='Discovery Call';if(inquiry)inquiry.insertAdjacentElement('afterend',a);else nav.appendChild(a)}const actions=document.querySelector('.hero-actions');if(actions&&!actions.querySelector('.discovery-call-hero')){const inquiry=actions.querySelector('a[href="#inquiry"]');const a=document.createElement('a');a.href=bookingUrl;a.target='_blank';a.rel='noopener';a.className='btn discovery-call-hero';a.textContent='Discovery Call';if(inquiry)inquiry.insertAdjacentElement('afterend',a);else actions.prepend(a)}const progress=document.querySelector('.inquiry-progress');if(progress)progress.innerHTML='<span class="active">PROJECT INQUIRY</span>'}addDiscoveryButtons();
+  const nav=document.querySelector('.site-header .nav');if(nav&&!nav.querySelector('.employee-login-link')){const link=document.createElement('a');link.href='employee-login.html';link.className='employee-login-link';link.textContent='Employee Login';const inquiry=nav.querySelector('a[href="#inquiry"]');inquiry?nav.insertBefore(link,inquiry):nav.appendChild(link);link.addEventListener('click',()=>nav.classList.remove('open'))}
+  const style=document.createElement('style');style.textContent='.employee-login-link{display:inline-flex!important;align-items:center;justify-content:center;gap:7px;padding:9px 14px!important;border:1px solid rgba(255,255,255,.28);border-radius:999px;text-decoration:none;white-space:nowrap;font-size:12px!important;font-weight:800!important;letter-spacing:.04em;transition:.2s ease}.employee-login-link:before{content:"🔒";font-size:11px}.employee-login-link:hover{background:rgba(255,255,255,.1);transform:translateY(-1px)}.site-header .nav .discovery-call-link{margin-left:6px}.hero-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.hero-actions>a.btn{min-width:190px;min-height:52px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;text-align:center}.hero-actions .discovery-call-hero{background:var(--navy)!important;color:#fff!important;border:2px solid var(--gold)!important;border-radius:999px!important;padding:14px 22px!important;font-size:14px!important;font-weight:800!important;box-shadow:0 0 0 1px rgba(199,162,93,.12)}.hero-actions .discovery-call-hero:hover{transform:translateY(-2px)!important;background:var(--navy2)!important;border-color:var(--gold)!important}';document.head.appendChild(style);
 })();
