@@ -210,3 +210,36 @@ body{background:radial-gradient(circle at 12% 12%,rgba(7,23,93,.08),transparent 
     max-height:102px!important;
   }
 }
+
+
+/* 2026-09-26 requested cleanup: keep card layout unchanged */
+.founder-flip-card .click-me-pill{
+  display:none!important;
+  visibility:hidden!important;
+  opacity:0!important;
+}
+
+/* Sushiyal: clean logo-only presentation on white, matching other brand cards */
+.logo-wall.creative-logos > a.sushiyal-brand-card{
+  background:#fff!important;
+}
+.logo-wall.creative-logos > a.sushiyal-brand-card img{
+  width:auto!important;
+  height:auto!important;
+  max-width:88%!important;
+  max-height:88px!important;
+  object-fit:contain!important;
+  background:#fff!important;
+}
+
+/* High Cultured: slightly larger logo only; card dimensions stay unchanged */
+.logo-wall.creative-logos > a.highcultured-brand-card img{
+  max-width:118%!important;
+  max-height:114px!important;
+}
+@media(max-width:700px){
+  .logo-wall.creative-logos > a.highcultured-brand-card img{
+    max-width:114%!important;
+    max-height:108px!important;
+  }
+}
