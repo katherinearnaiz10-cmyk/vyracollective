@@ -64,17 +64,18 @@ const updatedGraphicsStyle=document.createElement('style');updatedGraphicsStyle.
 
 // Katherine founder story flip card
 document.addEventListener('DOMContentLoaded', () => {
-  const founderCard = document.querySelector('.founder-flip-card');
-  if (!founderCard) return;
-  const toggleFounderCard = () => {
-    const flipped = founderCard.classList.toggle('is-flipped');
-    founderCard.setAttribute('aria-pressed', String(flipped));
-  };
-  founderCard.addEventListener('click', toggleFounderCard);
-  founderCard.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      toggleFounderCard();
-    }
+  const founderCards = document.querySelectorAll('.founder-flip-card');
+  founderCards.forEach((founderCard) => {
+    const toggleFounderCard = () => {
+      const flipped = founderCard.classList.toggle('is-flipped');
+      founderCard.setAttribute('aria-pressed', String(flipped));
+    };
+    founderCard.addEventListener('click', toggleFounderCard);
+    founderCard.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        toggleFounderCard();
+      }
+    });
   });
 });
