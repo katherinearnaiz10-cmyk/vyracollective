@@ -93,30 +93,56 @@
 }
 
 
-/* Mobile hero service tags: keep borders clear of text */
+/* Mobile team story: full-screen only after a card is flipped */
 @media (max-width:700px){
-  .hero-tags{
-    display:flex!important;
-    flex-wrap:nowrap!important;
-    align-items:center!important;
-    gap:7px!important;
-    width:100%;
-    overflow-x:auto;
-    padding:3px 0 8px!important;
-    scrollbar-width:none;
+  body.story-open{overflow:hidden!important}
+
+  .founder-flip-card.is-flipped{
+    position:fixed!important;
+    inset:0!important;
+    z-index:10000!important;
+    width:100vw!important;
+    max-width:none!important;
+    height:100dvh!important;
+    min-height:100dvh!important;
+    margin:0!important;
+    padding:0!important;
+    border:0!important;
+    border-radius:0!important;
+    background:#0B1B3D!important;
+  }
+  .founder-flip-card.is-flipped .founder-flip-inner{
+    width:100%!important;
+    height:100%!important;
+    min-height:100%!important;
+  }
+  .founder-flip-card.is-flipped .founder-flip-back{
+    position:absolute!important;
+    inset:0!important;
+    width:100%!important;
+    height:100%!important;
+    border-radius:0!important;
+  }
+  .founder-flip-card.is-flipped .founder-story{
+    width:100%!important;
+    height:100dvh!important;
+    max-height:none!important;
+    overflow-y:auto!important;
+    padding:56px 24px 48px!important;
+    box-sizing:border-box!important;
     -webkit-overflow-scrolling:touch;
   }
-  .hero-tags::-webkit-scrollbar{display:none}
-  .hero-tags span{
-    flex:0 0 auto!important;
-    display:inline-flex!important;
-    align-items:center!important;
-    justify-content:center!important;
-    min-height:36px!important;
-    height:auto!important;
-    padding:8px 12px!important;
-    line-height:1.15!important;
-    white-space:nowrap!important;
-    box-sizing:border-box!important;
+  .founder-flip-card.is-flipped .founder-story h3{
+    font-size:1.55rem!important;
+  }
+  .founder-flip-card.is-flipped .founder-story p{
+    font-size:.95rem!important;
+    line-height:1.7!important;
+  }
+  .founder-flip-card.is-flipped .founder-story .founder-flip-hint{
+    display:block!important;
+    margin-top:28px!important;
+    padding:12px 0 20px!important;
+    font-size:.75rem!important;
   }
 }
