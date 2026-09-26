@@ -39,3 +39,35 @@ body{background:radial-gradient(circle at 12% 12%,rgba(7,23,93,.08),transparent 
 .founder-story .founder-flip-hint{display:block;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;opacity:.62;margin:24px 0 0;color:#fff}
 .founder-flip-card:focus-visible{outline:2px solid currentColor;outline-offset:5px}
 @media(max-width:700px){.founder-story{padding:22px 20px 28px}.founder-story p{font-size:.8rem;line-height:1.55}}
+
+
+/* Small click cue on Katherine and Dennis photos only */
+.founder-flip-card .team-photo{position:relative}
+.click-me-pill{
+  position:absolute;
+  left:50%;
+  bottom:14px;
+  transform:translateX(-50%);
+  z-index:3;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:82px;
+  padding:7px 15px;
+  border:1px solid #e8bd62;
+  border-radius:999px;
+  background:rgba(11,27,61,.78);
+  color:#fff;
+  font-size:.68rem;
+  font-weight:600;
+  line-height:1;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  pointer-events:none;
+  backdrop-filter:blur(3px);
+  -webkit-backdrop-filter:blur(3px);
+}
+@media(max-width:700px){
+  .click-me-pill{bottom:10px;min-width:70px;padding:6px 12px;font-size:.6rem}
+}
