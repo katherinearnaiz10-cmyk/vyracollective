@@ -146,3 +146,10 @@
     font-size:.75rem!important;
   }
 }
+
+
+@media (max-width:700px){
+  .founder-flip-card.is-flipped .click-me-pill{
+    display:none!important;
+  }
+}
