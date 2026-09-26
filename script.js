@@ -61,3 +61,20 @@ const newGraphicWork=[
 const graphicsGrid=document.querySelector('#graphics .graphics-grid');
 if(graphicsGrid){graphicsGrid.innerHTML=newGraphicWork.map(([src,client,type],i)=>`<button class="graphic-card new-graphic-card" data-image="${src}" aria-label="View ${client} ${type}"><img src="${src}" alt="${client} — ${type}" loading="lazy"><span><b>${client}</b><small>${type}</small></span></button>`).join('');graphicsGrid.querySelectorAll('.graphic-card').forEach((card,i)=>{card.classList.add('scroll-reveal','is-visible');card.style.setProperty('--reveal-delay',`${(i%4)*70}ms`);card.addEventListener('click',()=>openModal(`<img src="${card.dataset.image}" alt="Graphic design sample">`))});}
 const updatedGraphicsStyle=document.createElement('style');updatedGraphicsStyle.textContent=`#graphics .graphics-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}.new-graphic-card{position:relative;overflow:hidden;aspect-ratio:1/1;border-radius:20px;background:rgba(255,255,255,.06);border:1px solid rgba(185,221,255,.18);box-shadow:0 16px 38px rgba(0,0,0,.2);padding:0}.new-graphic-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s ease,filter .45s ease}.new-graphic-card>span{position:absolute;left:0;right:0;bottom:0;padding:28px 16px 14px;text-align:left;background:linear-gradient(transparent,rgba(3,12,48,.9));transform:translateY(4px);transition:transform .3s ease}.new-graphic-card span b,.new-graphic-card span small{display:block;color:#fff}.new-graphic-card span b{font-size:12px;margin-bottom:3px}.new-graphic-card span small{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#f1c978}.new-graphic-card:hover{border-color:rgba(241,201,120,.65);box-shadow:0 20px 48px rgba(0,0,0,.3),0 0 28px rgba(241,201,120,.12)}.new-graphic-card:hover img{transform:scale(1.045);filter:brightness(1.04)}.new-graphic-card:hover>span{transform:translateY(0)}@media(max-width:1000px){#graphics .graphics-grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:700px){#graphics .graphics-grid{grid-template-columns:repeat(2,1fr);gap:12px}}`;document.head.appendChild(updatedGraphicsStyle);
+
+// Katherine founder story flip card
+document.addEventListener('DOMContentLoaded', () => {
+  const founderCard = document.querySelector('.founder-flip-card');
+  if (!founderCard) return;
+  const toggleFounderCard = () => {
+    const flipped = founderCard.classList.toggle('is-flipped');
+    founderCard.setAttribute('aria-pressed', String(flipped));
+  };
+  founderCard.addEventListener('click', toggleFounderCard);
+  founderCard.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      toggleFounderCard();
+    }
+  });
+});
