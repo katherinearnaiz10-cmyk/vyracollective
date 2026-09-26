@@ -69,6 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggleFounderCard = () => {
       const flipped = founderCard.classList.toggle('is-flipped');
       founderCard.setAttribute('aria-pressed', String(flipped));
+      if (window.matchMedia('(max-width: 700px)').matches) {
+        document.body.classList.toggle('story-open', !!document.querySelector('.founder-flip-card.is-flipped'));
+      }
     };
     founderCard.addEventListener('click', toggleFounderCard);
     founderCard.addEventListener('keydown', (event) => {
