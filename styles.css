@@ -159,3 +159,35 @@ body{background:radial-gradient(circle at 12% 12%,rgba(7,23,93,.08),transparent 
   max-height:95px!important;
   object-fit:contain!important;
 }
+
+
+/* Small section-level interaction cue */
+.heading-with-cue{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+}
+.heading-with-cue h2{margin:0}
+.section-click-cue{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:7px 13px;
+  border:1px solid #e8bd62;
+  border-radius:999px;
+  color:inherit;
+  font-size:.62rem;
+  font-weight:600;
+  line-height:1;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+@media(max-width:700px){
+  .heading-with-cue{gap:8px}
+  .section-click-cue{
+    padding:6px 10px;
+    font-size:.54rem;
+  }
+}
