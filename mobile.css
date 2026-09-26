@@ -255,3 +255,17 @@
     font-size:.52rem!important;
   }
 }
+
+
+/* Clickable brand links keep the exact original mobile logo-card sizing */
+@media (max-width:700px){
+  .logo-wall.creative-logos > a.brand-link-card{
+    height:112px!important;
+    padding:14px!important;
+  }
+  .logo-wall.creative-logos > a.brand-link-card img{
+    max-width:100%!important;
+    max-height:95px!important;
+    object-fit:contain!important;
+  }
+}
