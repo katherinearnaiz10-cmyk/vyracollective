@@ -71,3 +71,12 @@ body{background:radial-gradient(circle at 12% 12%,rgba(7,23,93,.08),transparent 
 @media(max-width:700px){
   .click-me-pill{bottom:10px;min-width:70px;padding:6px 12px;font-size:.6rem}
 }
+
+
+/* Click cue is visible only on the front of every team story card */
+.founder-flip-card.is-flipped .click-me-pill{
+  display:none!important;
+  visibility:hidden!important;
+  opacity:0!important;
+  pointer-events:none!important;
+}
