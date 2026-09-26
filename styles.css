@@ -80,3 +80,21 @@ body{background:radial-gradient(circle at 12% 12%,rgba(7,23,93,.08),transparent 
   opacity:0!important;
   pointer-events:none!important;
 }
+
+
+/* Clickable creative brand cards */
+.creative-logos .brand-link-card{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:100%;
+  width:100%;
+  padding:inherit;
+  color:inherit;
+  text-decoration:none;
+  box-sizing:border-box;
+}
+.creative-logos .brand-link-card .brand-click-pill{
+  bottom:10px;
+}
