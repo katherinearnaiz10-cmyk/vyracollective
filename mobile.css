@@ -91,3 +91,32 @@
   .logo-wall{grid-template-columns:1fr 1fr}
   .inquiry-head h2{font-size:42px}
 }
+
+
+/* Mobile hero service tags: keep borders clear of text */
+@media (max-width:700px){
+  .hero-tags{
+    display:flex!important;
+    flex-wrap:nowrap!important;
+    align-items:center!important;
+    gap:7px!important;
+    width:100%;
+    overflow-x:auto;
+    padding:3px 0 8px!important;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+  }
+  .hero-tags::-webkit-scrollbar{display:none}
+  .hero-tags span{
+    flex:0 0 auto!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    min-height:36px!important;
+    height:auto!important;
+    padding:8px 12px!important;
+    line-height:1.15!important;
+    white-space:nowrap!important;
+    box-sizing:border-box!important;
+  }
+}
