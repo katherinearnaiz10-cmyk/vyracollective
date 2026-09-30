@@ -1,8 +1,7 @@
 // Add VYRA remote-support tools without changing the existing Tools & Technology setup.
 (()=>{
   const tools=[
-    ['anydesk','AnyDesk','https://www.google.com/s2/favicons?domain=anydesk.com&sz=128'],
-    ['chrome-remote','Chrome Remote Desktop','https://www.google.com/s2/favicons?domain=remotedesktop.google.com&sz=128']
+    ['anydesk','AnyDesk','https://www.google.com/s2/favicons?domain=anydesk.com&sz=128']
   ];
 
   const addRemoteTools=()=>{
@@ -12,7 +11,12 @@
     const grid=projectGroup?.querySelector('.tools-grid');
     if(!grid)return false;
 
-    // Remove duplicate cards, regardless of whether they came from the HTML or this script.
+    // Remove all Chrome Remote Desktop cards, then keep only one AnyDesk card.
+    [...grid.querySelectorAll('.tool-card')].forEach(card=>{
+      const name=card.querySelector('span')?.textContent.trim().toLowerCase()||'';
+      if(name==='chrome remote desktop') card.remove();
+    });
+
     tools.forEach(([id,name,logo])=>{
       const cards=[...grid.querySelectorAll('.tool-card')].filter(card=>
         card.querySelector('span')?.textContent.trim().toLowerCase()===name.toLowerCase()
