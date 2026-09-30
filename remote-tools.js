@@ -11,12 +11,15 @@
       ['anydesk','AnyDesk','https://www.google.com/s2/favicons?domain=anydesk.com&sz=128'],
       ['chrome-remote','Chrome Remote Desktop','https://www.google.com/s2/favicons?domain=remotedesktop.google.com&sz=128']
     ];
+    const existingNames=new Set([...grid.querySelectorAll('.tool-card span')].map(el=>el.textContent.trim().toLowerCase()));
     tools.forEach(([id,name,logo])=>{
+      if(existingNames.has(name.toLowerCase()))return;
       const card=document.createElement('div');
       card.className='tool-card';
       card.dataset.vyraRemoteTool=id;
       card.innerHTML=`<div class="tool-logo-wrap"><img src="${logo}" alt="${name} logo" loading="lazy"></div><span>${name}</span>`;
       grid.appendChild(card);
+      existingNames.add(name.toLowerCase());
     });
     return true;
   };
