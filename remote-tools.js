@@ -1,44 +1,61 @@
 // Add VYRA remote-support tools without changing the existing Tools & Technology setup.
 (()=>{
+  // Prevent multiple copies of this loader from adding duplicate cards.
+  if(window.__vyraRemoteToolsLoaded)return;
+  window.__vyraRemoteToolsLoaded=true;
+
   const tools=[
     ['anydesk','AnyDesk','https://www.google.com/s2/favicons?domain=anydesk.com&sz=128']
   ];
 
+  const removeDuplicateAnyDesk=()=>{
+    const cards=[...document.querySelectorAll('#tools .tool-card')].filter(card=>
+      (card.querySelector('span')?.textContent||'').trim().toLowerCase()==='anydesk'
+    );
+    // Keep exactly one AnyDesk card on the entire Tools section.
+    cards.slice(1).forEach(card=>card.remove());
+    return cards[0]||null;
+  };
+
   const addRemoteTools=()=>{
     const groups=[...document.querySelectorAll('#tools .tool-group')];
     if(!groups.length)return false;
+
+    // First clean any duplicate cards anywhere in the Tools section.
+    const existing=removeDuplicateAnyDesk();
+
     const projectGroup=groups.find(g=>/Project & Communication/i.test(g.querySelector('.tool-group-title')?.textContent||''))||groups[1]||groups[0];
     const grid=projectGroup?.querySelector('.tools-grid');
     if(!grid)return false;
 
-    // Remove all Chrome Remote Desktop cards, then keep only one AnyDesk card.
-    [...grid.querySelectorAll('.tool-card')].forEach(card=>{
+    // Remove all Chrome Remote Desktop cards.
+    [...document.querySelectorAll('#tools .tool-card')].forEach(card=>{
       const name=card.querySelector('span')?.textContent.trim().toLowerCase()||'';
-      if(name==='chrome remote desktop') card.remove();
+      if(name==='chrome remote desktop')card.remove();
     });
 
-    tools.forEach(([id,name,logo])=>{
-      const cards=[...grid.querySelectorAll('.tool-card')].filter(card=>
-        card.querySelector('span')?.textContent.trim().toLowerCase()===name.toLowerCase()
-      );
-      cards.slice(1).forEach(card=>card.remove());
-      if(!cards.length){
-        const card=document.createElement('div');
-        card.className='tool-card';
-        card.dataset.vyraRemoteTool=id;
-        card.innerHTML=`<div class="tool-logo-wrap"><img src="${logo}" alt="${name} logo" loading="lazy"></div><span>${name}</span>`;
-        grid.appendChild(card);
-      }
-    });
+    // Add AnyDesk only if there is no existing card anywhere in Tools.
+    if(!existing && ![...document.querySelectorAll('#tools .tool-card')].some(card=>
+      (card.querySelector('span')?.textContent||'').trim().toLowerCase()==='anydesk'
+    )){
+      const [id,name,logo]=tools[0];
+      const card=document.createElement('div');
+      card.className='tool-card';
+      card.dataset.vyraRemoteTool=id;
+      card.innerHTML=`<div class="tool-logo-wrap"><img src="${logo}" alt="${name} logo" loading="lazy"></div><span>${name}</span>`;
+      grid.appendChild(card);
+    }
+
+    // Final cleanup in case another loader injected a duplicate during rendering.
+    removeDuplicateAnyDesk();
     return true;
   };
 
-  if(!addRemoteTools()){
-    const observer=new MutationObserver(()=>{
-      if(addRemoteTools()) observer.disconnect();
-    });
+  const runCleanup=()=>addRemoteTools();
+  if(!runCleanup()){
+    const observer=new MutationObserver(runCleanup);
     observer.observe(document.documentElement,{childList:true,subtree:true});
-    setTimeout(()=>observer.disconnect(),8000);
+    setTimeout(()=>observer.disconnect(),12000);
   }
 
   // Keep Blessing's public team name consistent across the VYRA website.
