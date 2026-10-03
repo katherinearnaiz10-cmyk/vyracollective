@@ -1,0 +1,43 @@
+name: Fix Blessing Name
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  fix-name:
+    if: contains(github.event.head_commit.message, 'Fix Blessing Name') == false
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Replace Blessing's last name
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text()
+          s2 = s.replace('Blessing Chisom Onyeka', 'Blessing Chisom Eze')
+          if s2 == s:
+              print('No change needed.')
+          else:
+              p.write_text(s2)
+              print('Updated Blessing Chisom Onyeka to Blessing Chisom Eze.')
+          PY
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Fix Blessing Name"
+          git push
