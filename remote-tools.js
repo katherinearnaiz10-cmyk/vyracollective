@@ -1,49 +1,35 @@
-// Clean up remote-support tools without creating duplicate cards.
+// VYRA remote-support tools cleanup
 (()=>{
   if(window.__vyraRemoteToolsLoaded)return;
   window.__vyraRemoteToolsLoaded=true;
 
   const cleanRemoteTools=()=>{
-    const cards=[...document.querySelectorAll('#tools .tool-card')];
+    const tools=document.querySelector('#tools');
+    if(!tools)return;
 
-    // Keep only the first AnyDesk card already present in the Tools section.
-    const anydeskCards=cards.filter(card=>
-      (card.querySelector('span')?.textContent||'').trim().toLowerCase()==='anydesk'
-    );
+    const cards=[...tools.querySelectorAll('.tool-card')];
+    const textOf=card=>(card.textContent||'').replace(/\s+/g,' ').trim().toLowerCase();
+
+    // Chrome Remote Desktop must never appear anywhere in the Tools section.
+    cards.forEach(card=>{
+      const text=textOf(card);
+      if(text.includes('chrome remote desktop') || text.includes('chrome remote') || text.includes('remote desktop')){
+        card.remove();
+      }
+    });
+
+    // Keep only one AnyDesk card.
+    const remaining=[...tools.querySelectorAll('.tool-card')];
+    const anydeskCards=remaining.filter(card=>textOf(card).includes('anydesk'));
     anydeskCards.slice(1).forEach(card=>card.remove());
-
-    // Chrome Remote Desktop must never appear in the VYRA Tools section.
-    [...document.querySelectorAll('#tools .tool-card')].forEach(card=>{
-      const name=(card.querySelector('span')?.textContent||'').trim().toLowerCase();
-      if(name.includes('chrome remote desktop')) card.remove();
-    });
   };
 
-  // Run immediately and keep watching because the Tools section can be rendered
-  // after this script loads or re-rendered by the portal.
-  cleanRemoteTools();
-  const observer=new MutationObserver(()=>cleanRemoteTools());
-  observer.observe(document.documentElement,{childList:true,subtree:true});
-
-  // Keep Blessing's public team name consistent across the VYRA website.
-  const updateBlessingName=()=>{
-    document.querySelectorAll('#team .team-card').forEach(card=>{
-      const heading=card.querySelector('h3');
-      const image=card.querySelector('img');
-      if(heading && heading.textContent.trim()==='Blessing Chisom Onyeka') heading.textContent='Blessing Chisom Eze';
-      if(image && image.alt.trim()==='Blessing Chisom Onyeka') image.alt='Blessing Chisom Eze';
-    });
+  const start=()=>{
+    cleanRemoteTools();
+    const observer=new MutationObserver(()=>cleanRemoteTools());
+    observer.observe(document.documentElement,{childList:true,subtree:true});
   };
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',updateBlessingName);
-  else updateBlessingName();
 
-  // Load the VYRA screen-by-screen navigation layer.
-  const screenCss=document.createElement('link');
-  screenCss.rel='stylesheet';
-  screenCss.href='screen-nav.css?v=2';
-  document.head.appendChild(screenCss);
-  const screenScript=document.createElement('script');
-  screenScript.src='screen-nav.js?v=2';
-  screenScript.defer=true;
-  document.body.appendChild(screenScript);
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);
+  else start();
 })();
