@@ -11,3 +11,235 @@
    PROFESSIONAL GLASS / TRANSPARENT LOOK
 ========================= */
 body{background:radial-gradient(circle at 12% 12%,rgba(7,23,93,.08),transparent 32%),radial-gradient(circle at 88% 42%,rgba(199,162,93,.10),transparent 28%),linear-gradient(135deg,#f8faff 0%,#ffffff 48%,#f4f6fc 100%);background-attachment:fixed}.site-header{background:rgba(255,255,255,.70);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.65);box-shadow:0 8px 32px rgba(7,23,93,.05)}.hero,.split-section,.team-section,.services-section,.brands-section,.experience-section,.meaning-section,.cta-section{background:transparent}.mark-card,.service-group:not(.dark),.service-card,.team-card,.logo-wall>div,.graphic-card{background:rgba(255,255,255,.62);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.82);box-shadow:0 14px 45px rgba(7,23,93,.07)}.team-card{padding:14px 14px 20px;border-radius:24px}.team-photo{margin-bottom:14px}.service-group.dark{background:rgba(7,23,93,.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 20px 55px rgba(7,23,93,.16)}.work-section{background:rgba(7,14,48,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}.meaning-card{background:rgba(7,23,93,.90);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.10);box-shadow:0 24px 70px rgba(7,23,93,.18)}.hero-tags span{background:rgba(255,255,255,.58);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}.tab.active{background:rgba(255,255,255,.92)}@media(max-width:620px){body{background-attachment:scroll}.site-header{background:rgba(255,255,255,.84)}.team-card{padding:9px 9px 15px;border-radius:18px}}
+
+
+/* Portfolio media viewer — preserve original Reel / graphic proportions */
+.media-modal{position:fixed;inset:0;background:rgba(3,7,24,.94);z-index:1000;display:none;align-items:center;justify-content:center;padding:24px}
+.media-modal.open{display:flex}
+.media-content{width:auto;max-width:94vw;max-height:92vh;display:flex;align-items:center;justify-content:center}
+.media-content video{display:block;width:auto;height:auto;max-width:min(94vw,520px);max-height:88vh;object-fit:contain;border-radius:18px;background:#000;box-shadow:0 24px 70px rgba(0,0,0,.5)}
+.media-content img{display:block;width:auto;height:auto;max-width:94vw;max-height:88vh;object-fit:contain;border-radius:14px;box-shadow:0 24px 70px rgba(0,0,0,.5)}
+.media-close{position:fixed;right:24px;top:16px;z-index:1001;border:0;background:rgba(0,0,0,.35);color:#fff;width:46px;height:46px;border-radius:50%;font-size:32px;line-height:1;cursor:pointer}
+@media(max-width:620px){.media-modal{padding:12px}.media-content video{max-width:92vw;max-height:86vh}.media-content img{max-width:92vw;max-height:86vh}.media-close{right:12px;top:12px}}
+
+
+/* Founder story flip card — front preserves original team-card appearance */
+.founder-flip-card{perspective:1400px;cursor:pointer}
+.founder-flip-inner{position:relative;width:100%;transition:transform .75s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
+.founder-flip-card.is-flipped .founder-flip-inner{transform:rotateY(180deg)}
+.founder-flip-front{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.founder-flip-back{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:rotateY(180deg);background:#0B1B3D;color:#fff;text-align:left;overflow:hidden}
+.founder-story{height:100%;overflow-y:auto;padding:28px 26px 34px;scrollbar-width:thin;overscroll-behavior:contain}
+.founder-story h3{color:#fff;margin:0 0 4px;font-size:1.35rem}
+.founder-story .founder-role{opacity:.75;margin:0 0 22px;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em}
+.founder-story p{color:rgba(255,255,255,.88);font-size:.88rem;line-height:1.65;margin:0 0 15px}
+.founder-story strong{color:#fff}
+.founder-signoff{font-size:1rem!important;margin-top:22px!important}
+.founder-flip-hint{display:none}
+.founder-story .founder-flip-hint{display:block;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;opacity:.62;margin:24px 0 0;color:#fff}
+.founder-flip-card:focus-visible{outline:2px solid currentColor;outline-offset:5px}
+@media(max-width:700px){.founder-story{padding:22px 20px 28px}.founder-story p{font-size:.8rem;line-height:1.55}}
+
+
+/* Small click cue on Katherine and Dennis photos only */
+.founder-flip-card .team-photo{position:relative}
+.click-me-pill{
+  position:absolute;
+  left:50%;
+  bottom:14px;
+  transform:translateX(-50%);
+  z-index:3;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:82px;
+  padding:7px 15px;
+  border:1px solid #e8bd62;
+  border-radius:999px;
+  background:rgba(11,27,61,.78);
+  color:#fff;
+  font-size:.68rem;
+  font-weight:600;
+  line-height:1;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  pointer-events:none;
+  backdrop-filter:blur(3px);
+  -webkit-backdrop-filter:blur(3px);
+}
+@media(max-width:700px){
+  .click-me-pill{bottom:10px;min-width:70px;padding:6px 12px;font-size:.6rem}
+}
+
+
+/* Click cue is visible only on the front of every team story card */
+.founder-flip-card.is-flipped .click-me-pill{
+  display:none!important;
+  visibility:hidden!important;
+  opacity:0!important;
+  pointer-events:none!important;
+}
+
+
+/* Clickable creative brand cards */
+.creative-logos .brand-link-card{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:100%;
+  width:100%;
+  padding:inherit;
+  color:inherit;
+  text-decoration:none;
+  box-sizing:border-box;
+}
+.creative-logos .brand-link-card .brand-click-pill{
+  bottom:10px;
+}
+
+
+/* Creative brand links — entire logo tile is an active link */
+.logo-wall.creative-logos > a.brand-link-card{
+  position:relative!important;
+  height:170px!important;
+  background:#fff!important;
+  border:1px solid var(--line)!important;
+  border-radius:18px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:22px!important;
+  color:inherit!important;
+  text-decoration:none!important;
+  box-sizing:border-box!important;
+  cursor:pointer!important;
+  pointer-events:auto!important;
+  overflow:hidden;
+}
+.logo-wall.creative-logos > a.brand-link-card img{
+  max-width:100%!important;
+  max-height:95px!important;
+  object-fit:contain!important;
+  pointer-events:none!important;
+}
+.logo-wall.creative-logos > a.brand-link-card .brand-click-pill{
+  display:inline-flex!important;
+  visibility:visible!important;
+  opacity:1!important;
+  bottom:10px!important;
+  pointer-events:none!important;
+}
+.logo-wall.creative-logos > a.brand-link-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 18px 45px rgba(7,23,93,.10);
+}
+
+
+/* Preserve the original creative-logo card appearance for clickable links */
+.logo-wall.creative-logos > a.brand-link-card{
+  height:170px!important;
+  background:#fff!important;
+  border:1px solid var(--line)!important;
+  border-radius:18px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:22px!important;
+  box-sizing:border-box!important;
+  position:relative!important;
+  color:inherit!important;
+  text-decoration:none!important;
+  cursor:pointer!important;
+  pointer-events:auto!important;
+}
+.logo-wall.creative-logos > a.brand-link-card img{
+  max-width:100%!important;
+  max-height:95px!important;
+  object-fit:contain!important;
+}
+
+
+/* Small section-level interaction cue */
+.heading-with-cue{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+}
+.heading-with-cue h2{margin:0}
+.section-click-cue{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:7px 13px;
+  border:1px solid #e8bd62;
+  border-radius:999px;
+  color:inherit;
+  font-size:.62rem;
+  font-weight:600;
+  line-height:1;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+@media(max-width:700px){
+  .heading-with-cue{gap:8px}
+  .section-click-cue{
+    padding:6px 10px;
+    font-size:.54rem;
+  }
+}
+
+
+/* Brand-specific logo cleanup only — card layout remains unchanged */
+.logo-wall.creative-logos > a.sushiyal-brand-card{
+  background:#fff!important;
+}
+.logo-wall.creative-logos > a.sushiyal-brand-card img{
+  object-fit:contain!important;
+}
+.logo-wall.creative-logos > a.highcultured-brand-card img{
+  max-width:112%!important;
+  max-height:108px!important;
+}
+@media(max-width:700px){
+  .logo-wall.creative-logos > a.highcultured-brand-card img{
+    max-width:108%!important;
+    max-height:102px!important;
+  }
+}
+
+
+/* 2026-09-26 requested cleanup: keep card layout unchanged */
+.founder-flip-card .click-me-pill{
+  display:none!important;
+  visibility:hidden!important;
+  opacity:0!important;
+}
+
+/* Sushiyal: clean logo-only presentation on white, matching other brand cards */
+.logo-wall.creative-logos > a.sushiyal-brand-card{
+  background:#fff!important;
+}
+.logo-wall.creative-logos > a.sushiyal-brand-card img{
+  width:auto!important;
+  height:auto!important;
+  max-width:88%!important;
+  max-height:88px!important;
+  object-fit:contain!important;
+  background:#fff!important;
+}
+
+/* High Cultured: slightly larger logo only; card dimensions stay unchanged */
+.logo-wall.creative-logos > a.highcultured-brand-card img{
+  max-width:118%!important;
+  max-height:114px!important;
+}
+@media(max-width:700px){
+  .logo-wall.creative-logos > a.highcultured-brand-card img{
+    max-width:114%!important;
+    max-height:108px!important;
+  }
+}
