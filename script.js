@@ -82,3 +82,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+
+// Hero VYRA video: autoplay reliably, with sound controlled directly by clicking the video.
+const heroVideo=document.querySelector('.hero-mark-video');
+if(heroVideo){
+  heroVideo.muted=true;
+  heroVideo.addEventListener('click',()=>{
+    heroVideo.muted=!heroVideo.muted;
+    if(heroVideo.paused) heroVideo.play().catch(()=>{});
+  });
+}
