@@ -243,3 +243,14 @@ body{background:radial-gradient(circle at 12% 12%,rgba(7,23,93,.08),transparent 
     max-height:108px!important;
   }
 }
+
+
+/* Rye and Fusion logo tiles: match the white background of the other brand cards */
+.logo-wall.creative-logos > div{
+  background:#fff!important;
+  border:1px solid var(--line)!important;
+  border-radius:18px!important;
+}
+.logo-wall.creative-logos > div img{
+  object-fit:contain!important;
+}
